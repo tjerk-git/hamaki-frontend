@@ -1,46 +1,27 @@
 <script>
 	import { page } from '$app/stores';
-	import { API_BASE_URL } from '$lib/variables';
+
+	export let data;
+	export let form;
+
+	console.log(data);
 
 	const { spotId } = $page.params;
-
-	console.log(spotId);
-
-	let email = '';
-	let name = '';
-
-	function handleSubmit() {
-		const formData = {
-			email,
-			name,
-			spotId
-		};
-
-		fetch(`${API_BASE_URL}/api/v1/spots/reserve`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(formData)
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log('Response:', data);
-				// Handle the response from the server if needed
-			})
-			.catch((error) => {
-				console.error('Error:', error);
-				// Handle any errors that occurred during the request
-			});
-	}
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
+{#if form?.success}
+	<!-- this message is ephemeral; it exists because the page was rendered in
+           response to a form submission. it will vanish if the user reloads -->
+
+	<p>Thanks for reserving a spot!</p>
+{/if}
+
+<form method="POST" action="/reserve/{spotId}">
 	<label for="email">Email:</label>
-	<input type="email" id="email" bind:value={email} required />
+	<input type="email" name="email" id="email" required />
 
 	<label for="name">Name:</label>
-	<input type="text" id="name" bind:value={name} required />
+	<input type="text" name="name" id="name" required />
 
 	<button type="submit">Submit</button>
 </form>
