@@ -1,5 +1,4 @@
 // @TODO make this come from env file?
-
 import { API_BASE_URL } from '$lib/variables';
 
 // const jsonResponse = {
@@ -48,28 +47,4 @@ export async function load({ fetch, params }) {
     } catch (error) {
         console.error(`Error in load function for /: ${error}`);
     }
-
-    // const request = new Request(url, {
-    //     method: "GET",
-    // });
-
-    // response = fetch(request)
-    //     .then((response) => {
-    //         if (response.status === 200) {
-    //             return response.json();
-    //         } else {
-    //             throw new Error("Something went wrong on API server!");
-    //         }
-    //     })
-    //     .then((response) => {
-    //         console.debug(response);
-    //         // …
-    //     })
-    //     .catch((error) => {
-    //         console.error(error);
-    //     });
-
-    // return {
-    //     calendar: response
-    // };
 }

@@ -1,5 +1,9 @@
+<script>
+	export let calendarTitle;
+</script>
+
 <header>
-	<div class="logo--box" id="logo">
+	<div class="logo--box" id="logo" style="margin-top: 25px;">
 		<svg
 			width="40px"
 			height="45px"
@@ -69,6 +73,7 @@
 				</g>
 			</g>
 		</svg>
+		<h1 id="title" style="font-size: 40pt;">Meet with Tjerk</h1>
 	</div>
 </header>
 
@@ -81,5 +86,9 @@
 		display: flex;
 		justify-content: center;
 		background: linear-gradient(#6232e6, #491cc3);
+	}
+	.logo--box {
+		text-align: center;
+		margin-top: 25px;
 	}
 </style>
