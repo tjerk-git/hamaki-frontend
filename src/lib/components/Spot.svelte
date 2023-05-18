@@ -1,7 +1,11 @@
 <script>
 	import Time from 'svelte-time';
-	import getUserLocale from 'get-user-locale';
-
+	import getCorrectDate from '$lib/helpers';
+	const dateOptions = {
+		hour: 'numeric',
+		minute: 'numeric',
+		hour12: false
+	};
 	export let spot;
 
 	const getUrl = (spot) => {
@@ -10,23 +14,6 @@
 		} else {
 			return `/reserve/${spot.id}`;
 		}
-	};
-
-	const getCorrectDate = (spotDate) => {
-		const timestamp = spotDate;
-
-		const date = new Date(timestamp);
-		const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-		const userLocale = getUserLocale();
-		const options = {
-			timeZone: userTimezone,
-			hour: 'numeric',
-			minute: 'numeric',
-			hour12: false
-		};
-		const humanDate = date.toLocaleString(userLocale, options);
-
-		return humanDate;
 	};
 </script>
 
@@ -45,9 +32,9 @@
 		>
 	{/if}
 
-	<time>{getCorrectDate(spot.startDate)}</time>
+	<time>{getCorrectDate(spot.startDate, dateOptions)}</time>
 	-
-	<time>{getCorrectDate(spot.startDate)}</time>
+	<time>{getCorrectDate(spot.startDate, dateOptions)}</time>
 
 	{#if spot.status === 'reserved'}
 		<span

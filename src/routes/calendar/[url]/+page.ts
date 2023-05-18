@@ -8,7 +8,7 @@ export async function load({ fetch, params }) {
     try {
         const res = await fetch(url);
         const calendar = await res.json();
-        console.log(calendar.groupedSpots[0].spots);
+        //console.log(calendar.groupedSpots[0].day);
         return { calendar };
     } catch (error) {
         console.error(`Error in load function for /: ${error}`);
