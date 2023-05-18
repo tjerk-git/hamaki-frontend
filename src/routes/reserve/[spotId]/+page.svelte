@@ -63,38 +63,7 @@
 					</g>
 				</svg>
 			</a>
-			<h2>
-				<time
-					datetime="2023-05-24T12:30:00Z"
-					data-local="time"
-					data-format="%e %B"
-					title="May 24, 2023 at 2:30pm CEST"
-					data-localized=""
-					aria-label="24 May">24 May</time
-				>
-				at
-				<time datetime="2023-05-24 12:30:00 UTC"
-					><time
-						datetime="2023-05-24T12:30:00Z"
-						data-local="time"
-						data-format="%H:%M"
-						title="May 24, 2023 at 2:30pm CEST"
-						data-localized=""
-						aria-label="14:30">14:30</time
-					></time
-				>
-				-
-				<time datetime="2023-05-24 13:00:00 UTC"
-					><time
-						datetime="2023-05-24T13:00:00Z"
-						data-local="time"
-						data-format="%H:%M"
-						title="May 24, 2023 at 3:00pm CEST"
-						data-localized=""
-						aria-label="15:00">15:00</time
-					></time
-				>
-			</h2>
+			<h2>Reserve a spot</h2>
 		</div>
 
 		<form method="POST" action="/reserve/{spotId}">

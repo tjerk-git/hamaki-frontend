@@ -1,5 +1,7 @@
 <script>
 	import Time from 'svelte-time';
+	import getUserLocale from 'get-user-locale';
+
 	export let spot;
 
 	const getUrl = (spot) => {
@@ -8,6 +10,23 @@
 		} else {
 			return `/reserve/${spot.id}`;
 		}
+	};
+
+	const getCorrectDate = (spotDate) => {
+		const timestamp = spotDate;
+
+		const date = new Date(timestamp);
+		const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		const userLocale = getUserLocale();
+		const options = {
+			timeZone: userTimezone,
+			hour: 'numeric',
+			minute: 'numeric',
+			hour12: false
+		};
+		const humanDate = date.toLocaleString(userLocale, options);
+
+		return humanDate;
 	};
 </script>
 
@@ -26,9 +45,9 @@
 		>
 	{/if}
 
-	<Time timestamp={spot.spotTime} format="HH:MM" />
+	<time>{getCorrectDate(spot.startDate)}</time>
 	-
-	<Time timestamp={spot.spotEndTime} format="HH:MM" />
+	<time>{getCorrectDate(spot.startDate)}</time>
 
 	{#if spot.status === 'reserved'}
 		<span
@@ -89,5 +108,20 @@
 	span {
 		margin-right: 10px;
 		margin-left: 20px;
+	}
+
+	.taken {
+		background: #8d8d8d;
+		padding: 1rem;
+		color: #dcdcdc;
+		text-decoration: none;
+		border-radius: 15px;
+		cursor: pointer;
+		display: block;
+		display: flex;
+		align-items: center;
+		font-size: 15pt;
+		margin-bottom: 30px;
+		font-family: Inter;
 	}
 </style>
