@@ -1,34 +1,65 @@
 <script>
 	import Time from 'svelte-time';
-	export let spotTime;
-	export let spotId;
-	export let spotEndTime;
+	export let spot;
+	let url;
+
+	const getUrl = (spot) => {
+		if (spot.status === 'reserved') {
+			return '#';
+		} else {
+			return `/reserve/${spot.id}`;
+		}
+	};
 </script>
 
-<a href="/reserve/{spotId}">
-	<Time timestamp={spotTime} format="HH:MM" />
-	-
-	<Time timestamp={spotEndTime} format="HH:MM" />
-	<span class="take-spot">
-		<!--?xml version="1.0" encoding="UTF-8"?-->
-		<svg
-			width="24px"
-			height="16px"
-			viewBox="0 0 24 16"
-			version="1.1"
-			xmlns="http://www.w3.org/2000/svg"
-			xmlns:xlink="http://www.w3.org/1999/xlink"
+<a href={getUrl(spot)}>
+	{#if spot.status == 'reserved'}
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+			><path
+				d="M8 10v-4c0-2.206 1.794-4 4-4 2.205 0 4 1.794 4 4v1h2v-1c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-13z"
+			/></svg
 		>
-			<title>assets/icons/arrow</title>
-			<g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-				<g id="assets/icons/arrow" fill="#7958D6">
-					<polygon
-						transform="translate(11.600922, 8.000000) rotate(-180.000000) translate(-11.600922, -8.000000) "
-						points="8.00278293 3.55271368e-15 1.5235185 6.47975554 1.52046273 6.4766452 0 7.99710793 0.00311033504 8.00021827 0 8.00327404 1.52046273 9.52373677 1.5235185 9.520681 8.00294663 16 9.52340936 14.4795373 4.11933864 9.07546655 23.2018444 9.07546655 23.2018444 6.92486085 4.11933864 6.92486085 9.52340936 1.52029903 8.00305577 3.55271368e-15"
-					/>
+	{:else}
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+			><path
+				d="M12 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v3h2v-3c0-2.206 1.794-4 4-4s4 1.794 4 4v4h-4v14h18v-14h-12zm10 12h-14v-10h14v10z"
+			/></svg
+		>
+	{/if}
+
+	<Time timestamp={spot.spotTime} format="HH:MM" />
+	-
+	<Time timestamp={spot.spotEndTime} format="HH:MM" />
+
+	{#if spot.status === 'reserved'}
+		<span
+			>Claimed
+			<Time relative timestamp={spot.updatedAt} />
+		</span>
+	{/if}
+
+	<span class="take-spot">
+		{#if spot.status !== 'reserved'}
+			<!--?xml version="1.0" encoding="UTF-8"?-->
+			<svg
+				width="24px"
+				height="16px"
+				viewBox="0 0 24 16"
+				version="1.1"
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink"
+			>
+				<title>assets/icons/arrow</title>
+				<g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+					<g id="assets/icons/arrow" fill="#7958D6">
+						<polygon
+							transform="translate(11.600922, 8.000000) rotate(-180.000000) translate(-11.600922, -8.000000) "
+							points="8.00278293 3.55271368e-15 1.5235185 6.47975554 1.52046273 6.4766452 0 7.99710793 0.00311033504 8.00021827 0 8.00327404 1.52046273 9.52373677 1.5235185 9.520681 8.00294663 16 9.52340936 14.4795373 4.11933864 9.07546655 23.2018444 9.07546655 23.2018444 6.92486085 4.11933864 6.92486085 9.52340936 1.52029903 8.00305577 3.55271368e-15"
+						/>
+					</g>
 				</g>
-			</g>
-		</svg>
+			</svg>
+		{/if}
 	</span>
 </a>
 
@@ -49,5 +80,15 @@
 	}
 	a span:last-child {
 		margin-left: auto;
+	}
+
+	svg {
+		fill: #4d1fc8;
+		margin-right: 20px;
+	}
+
+	span {
+		margin-right: 10px;
+		margin-left: 20px;
 	}
 </style>

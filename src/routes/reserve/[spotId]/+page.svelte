@@ -1,10 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 
-	export let data;
 	export let form;
-
-	console.log(data);
 
 	const { spotId } = $page.params;
 </script>
@@ -13,7 +10,26 @@
 	<!-- this message is ephemeral; it exists because the page was rendered in
            response to a form submission. it will vanish if the user reloads -->
 
-	<p>Thanks for reserving a spot!</p>
+	<p>Thanks {form?.data.reservation?.visitor?.name} for reserving a spot!</p>
+
+	{#if form?.data.reservation?.comment}
+		A comment was included: {form?.data.reservation?.comment}
+	{/if}
+
+	<a target="_blank" href={form?.data.reservation?.icsURL}>Add to your calendar</a>
+{/if}
+
+{#if form?.success === false}
+	<!-- this message is ephemeral; it exists because the page was rendered in
+           response to a form submission. it will vanish if the user reloads -->
+
+	<p>Whoops, something went wrong</p>
+
+	{#if form?.data.reason == 'IM Used'}
+		<p>It looks like this spot has been claimed</p>
+	{/if}
+
+	<a href="/reserve/{spotId}">Try again</a>
 {/if}
 
 <form method="POST" action="/reserve/{spotId}">

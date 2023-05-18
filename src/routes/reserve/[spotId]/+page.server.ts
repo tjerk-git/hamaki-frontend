@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '$lib/variables';
-import type { PageServerLoad, Actions } from './$types';
+import type { Actions } from './$types';
 
 export const actions = {
     default: async ({ request, params }) => {
@@ -11,28 +11,36 @@ export const actions = {
             visitorEmail: email,
             visitorName: name,
             spotId: params.spotId,
-        }
+        };
 
-        fetch(`${API_BASE_URL}/api/v1/spots/reserve`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Response:', data);
-                // Handle the response from the server if needed
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                // Handle any errors that occurred during the request
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/v1/spots/reserve`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
             });
 
-        return { success: true };
+            if (response.status !== 200) {
+                const errorData = await response.json();
+                console.error('Error:', errorData);
+                return { success: false, data: errorData };
+            }
+
+            const responseData = await response.json();
+
+            return { success: true, data: responseData };
+        } catch (error) {
+            console.error('Error:', error);
+            console.log('im here');
+            // Handle any errors that occurred during the request
+
+            return { success: false, data: error };
+        }
     },
 } satisfies Actions;
+
 
 // fetch(`${API_BASE_URL}/api/v1/spots/reserve`, {
 //     method: 'POST',
