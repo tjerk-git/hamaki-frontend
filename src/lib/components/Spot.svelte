@@ -1,7 +1,6 @@
 <script>
 	import Time from 'svelte-time';
 	export let spot;
-	let url;
 
 	const getUrl = (spot) => {
 		if (spot.status === 'reserved') {

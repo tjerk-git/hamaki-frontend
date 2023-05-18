@@ -33,7 +33,6 @@ export const actions = {
             return { success: true, data: responseData };
         } catch (error) {
             console.error('Error:', error);
-            console.log('im here');
             // Handle any errors that occurred during the request
 
             return { success: false, data: error };

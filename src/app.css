@@ -1,3 +1,9 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 @charset "UTF-8";
 
 @font-face {
@@ -29,11 +35,13 @@ body {
   margin: 0;
   color:white;
   background:#7C5ECC;
+  font-family: Inter;
 }
 
 main{
   margin-right: auto;
   margin-left: auto;
   width:100%;
-  max-width: 960px;
+  max-width: 1130px;
+  padding: 1rem;
 }
