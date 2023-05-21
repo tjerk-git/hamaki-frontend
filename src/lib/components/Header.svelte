@@ -1,5 +1,5 @@
 <script>
-	export let calendarTitle;
+	export let name;
 </script>
 
 <header>
@@ -73,7 +73,7 @@
 				</g>
 			</g>
 		</svg>
-		<h1 id="title" style="font-size: 40pt;">Meet with Tjerk</h1>
+		<h1 id="title" style="font-size: 40pt;">{name}</h1>
 	</div>
 </header>
 

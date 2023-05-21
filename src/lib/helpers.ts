@@ -1,5 +1,6 @@
 import getUserLocale from 'get-user-locale';
 
+
 const getCorrectDate = (spotDate, dateOptions) => {
 
     const timestamp = spotDate;
@@ -17,5 +18,6 @@ const getCorrectDate = (spotDate, dateOptions) => {
 
     return humanDate;
 };
+
 
 export default getCorrectDate;

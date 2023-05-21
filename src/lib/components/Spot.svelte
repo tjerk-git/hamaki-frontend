@@ -9,16 +9,18 @@
 	export let spot;
 
 	const getUrl = (spot) => {
-		if (spot.status === 'reserved') {
+		if (spot.reservation) {
 			return '#';
 		} else {
-			return `/reserve/${spot.id}`;
+			return `/reserve/${spot.spotId}`;
 		}
 	};
 </script>
 
+{@debug spot}
+
 <a href={getUrl(spot)}>
-	{#if spot.status == 'reserved'}
+	{#if spot.reservation}
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			><path
 				d="M8 10v-4c0-2.206 1.794-4 4-4 2.205 0 4 1.794 4 4v1h2v-1c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-13z"
@@ -36,35 +38,26 @@
 	-
 	<time>{getCorrectDate(spot.startDate, dateOptions)}</time>
 
-	{#if spot.status === 'reserved'}
-		<span
-			>Claimed
-			<Time relative timestamp={spot.updatedAt} />
-		</span>
-	{/if}
-
 	<span class="take-spot">
-		{#if spot.status !== 'reserved'}
-			<!--?xml version="1.0" encoding="UTF-8"?-->
-			<svg
-				width="24px"
-				height="16px"
-				viewBox="0 0 24 16"
-				version="1.1"
-				xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink"
-			>
-				<title>assets/icons/arrow</title>
-				<g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-					<g id="assets/icons/arrow" fill="#7958D6">
-						<polygon
-							transform="translate(11.600922, 8.000000) rotate(-180.000000) translate(-11.600922, -8.000000) "
-							points="8.00278293 3.55271368e-15 1.5235185 6.47975554 1.52046273 6.4766452 0 7.99710793 0.00311033504 8.00021827 0 8.00327404 1.52046273 9.52373677 1.5235185 9.520681 8.00294663 16 9.52340936 14.4795373 4.11933864 9.07546655 23.2018444 9.07546655 23.2018444 6.92486085 4.11933864 6.92486085 9.52340936 1.52029903 8.00305577 3.55271368e-15"
-						/>
-					</g>
+		<!--?xml version="1.0" encoding="UTF-8"?-->
+		<svg
+			width="24px"
+			height="16px"
+			viewBox="0 0 24 16"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+		>
+			<title>assets/icons/arrow</title>
+			<g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+				<g id="assets/icons/arrow" fill="#7958D6">
+					<polygon
+						transform="translate(11.600922, 8.000000) rotate(-180.000000) translate(-11.600922, -8.000000) "
+						points="8.00278293 3.55271368e-15 1.5235185 6.47975554 1.52046273 6.4766452 0 7.99710793 0.00311033504 8.00021827 0 8.00327404 1.52046273 9.52373677 1.5235185 9.520681 8.00294663 16 9.52340936 14.4795373 4.11933864 9.07546655 23.2018444 9.07546655 23.2018444 6.92486085 4.11933864 6.92486085 9.52340936 1.52029903 8.00305577 3.55271368e-15"
+					/>
 				</g>
-			</svg>
-		{/if}
+			</g>
+		</svg>
 	</span>
 </a>
 
@@ -95,20 +88,5 @@
 	span {
 		margin-right: 10px;
 		margin-left: 20px;
-	}
-
-	.taken {
-		background: #8d8d8d;
-		padding: 1rem;
-		color: #dcdcdc;
-		text-decoration: none;
-		border-radius: 15px;
-		cursor: pointer;
-		display: block;
-		display: flex;
-		align-items: center;
-		font-size: 15pt;
-		margin-bottom: 30px;
-		font-family: Inter;
 	}
 </style>

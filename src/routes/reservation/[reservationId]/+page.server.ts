@@ -1,19 +1,24 @@
 // @TODO make this come from env file?
 import { API_BASE_URL } from '$lib/variables';
+import { API_VERSION } from '$lib/variables';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }) {
-    const url = `${API_BASE_URL}/calendar/${params.url}`;
+    const url = `${API_BASE_URL}/${API_VERSION}/reservation/${params.reservationId}`;
 
     try {
         const res = await fetch(url);
-        const calendar = await res.json();
-
-        //console.log(calendar)
+        const reservation = await res.json();
         //console.log(calendar.groupedSpots[0].day);
-        return { calendar };
+
+        //console.log(reservation);
+        return { reservation };
     } catch (error) {
         console.error(`Error in load function for /: ${error}`);
     }
+
 }
+
+
+
 
