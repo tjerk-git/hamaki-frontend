@@ -1,6 +1,7 @@
 <script>
 	export let data;
 	import Popup from '$lib/components/Popup.svelte';
+	import toast, { Toaster } from 'svelte-french-toast';
 	import { API_BASE_URL } from '$lib/variables';
 
 	let popupVisible = false;
@@ -22,12 +23,17 @@
 		});
 
 		console.log(response);
+
+		toast.success('Appointment has been cancelled');
+		popupVisible = false;
 	}
 
 	const showPopup = () => {
 		popupVisible = true;
 	};
 </script>
+
+<Toaster />
 
 <main>
 	<h2>Hey there, {data.reservation.visitor.name}</h2>

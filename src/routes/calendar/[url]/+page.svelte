@@ -14,7 +14,9 @@
 	};
 </script>
 
-{#if calendar}
+{#await calendar}
+	Loading...
+{:then calendar}
 	<Header name={calendar.calendar.name} />
 
 	<main>
@@ -27,11 +29,11 @@
 			{/each}
 		{/each}
 	</main>
-{:else}
+{:catch}
 	<main>
 		<h1>Whoa there, no spots available</h1>
 	</main>
-{/if}
+{/await}
 
 <style>
 	.groupedSpots {
