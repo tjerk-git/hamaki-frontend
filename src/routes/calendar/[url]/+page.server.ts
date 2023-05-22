@@ -1,5 +1,6 @@
-// @TODO make this come from env file?
-import { API_BASE_URL } from '$lib/variables';
+
+import { API_BASE_URL } from '$env/static/private';
+import { error } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }) {
@@ -7,13 +8,21 @@ export async function load({ fetch, params }) {
 
     try {
         const res = await fetch(url);
-        const calendar = await res.json();
 
-        //console.log(calendar)
-        //console.log(calendar.groupedSpots[0].day);
+        if (!res.ok) {
+            throw error(404, {
+                message: "Hmm, we can't find this calendar"
+            });
+        }
+
+        const calendar = await res.json();
         return { calendar };
-    } catch (error) {
-        console.error(`Error in load function for /: ${error}`);
+    } catch (things) {
+        throw error(404, {
+            message: 'Really sorry Hamaki servers are offline'
+        });
     }
+
+
 }
 

@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import { API_BASE_URL } from '$lib/variables';
+	import { PUBLIC_BASE_URL } from '$env/static/public';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import Header from '$lib/components/Header.svelte';
 	export let form;
@@ -33,7 +33,7 @@
 
 			<br />
 
-			<a target="_blank" href="{API_BASE_URL}{form?.data.reservation?.icsURL}"
+			<a target="_blank" href="{PUBLIC_BASE_URL}{form?.data.reservation?.icsURL}"
 				>Add to your calendar</a
 			>
 		{/if}

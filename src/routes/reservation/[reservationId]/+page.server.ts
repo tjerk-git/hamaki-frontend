@@ -1,6 +1,6 @@
 // @TODO make this come from env file?
-import { API_BASE_URL } from '$lib/variables';
-import { API_VERSION } from '$lib/variables';
+import { API_BASE_URL } from '$env/static/private';
+import { API_VERSION } from '$env/static/private';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }) {

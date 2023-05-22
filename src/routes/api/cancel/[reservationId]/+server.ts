@@ -1,5 +1,4 @@
-import { error } from '@sveltejs/kit';
-import { API_BASE_URL } from '$lib/variables';
+import { API_BASE_URL } from '$env/static/private';
 import type { RequestHandler } from '../$types';
 
 export const DELETE = (async ({ params }) => {

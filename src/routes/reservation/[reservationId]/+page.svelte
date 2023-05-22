@@ -2,7 +2,6 @@
 	export let data;
 	import Popup from '$lib/components/Popup.svelte';
 	import toast, { Toaster } from 'svelte-french-toast';
-	import { API_BASE_URL } from '$lib/variables';
 
 	let popupVisible = false;
 	let message = 'Are you sure you want to cancel the appointment?';

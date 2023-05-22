@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '$lib/variables';
+import { API_BASE_URL } from '$env/static/private';
 import type { Actions } from './$types';
 
 export const actions = {
@@ -40,20 +40,3 @@ export const actions = {
     },
 } satisfies Actions;
 
-
-// fetch(`${API_BASE_URL}/api/v1/spots/reserve`, {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(request.formData())
-// })
-//     .then((response) => response.json())
-//     .then((data) => {
-//         console.log('Response:', data);
-//         // Handle the response from the server if needed
-//     })
-//     .catch((error) => {
-//         console.error('Error:', error);
-//         // Handle any errors that occurred during the request
-//     });
