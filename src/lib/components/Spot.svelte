@@ -1,5 +1,16 @@
 <script>
-	import Time from 'svelte-time';
+	// spot opslaan in store
+	// en die haal ik weer op bij de reservation pagina.
+
+	const timeZonePromise = new Promise((resolve) => {
+		const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		resolve(timeZone);
+	});
+
+	timeZonePromise.then((timeZone) => {
+		console.log(timeZone);
+	});
+
 	import getCorrectDate from '$lib/helpers';
 	const dateOptions = {
 		hour: 'numeric',
@@ -34,7 +45,7 @@
 
 	<time>{getCorrectDate(spot.startDate, dateOptions)}</time>
 	-
-	<time>{getCorrectDate(spot.startDate, dateOptions)}</time>
+	<time>{getCorrectDate(spot.endDate, dateOptions)}</time>
 
 	<span class="take-spot">
 		<!--?xml version="1.0" encoding="UTF-8"?-->
