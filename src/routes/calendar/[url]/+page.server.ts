@@ -17,7 +17,7 @@ export async function load({ fetch, params }) {
 
         const calendar = await res.json();
 
-        console.log(calendar);
+        //console.log(calendar);
         return { calendar };
     } catch (things) {
         throw error(404, {
