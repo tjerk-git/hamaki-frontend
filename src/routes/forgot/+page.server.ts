@@ -6,11 +6,12 @@ export const actions = {
         const data = await request.formData();
         const email = data.get('email');
 
+        let urlOfCalendar = ""
+
         const formData = {
             email: email,
-            urlOfCalendar: "",
+            urlOfCalendar: urlOfCalendar
         };
-
 
         try {
             const response = await fetch(`${API_BASE_URL}/calendar/forgotten`, {
