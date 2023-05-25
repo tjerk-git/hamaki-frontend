@@ -1,11 +1,11 @@
-<script>
-	/** @type {import('./$types').PageData} */
-	export let data;
-	import Spot from '$lib/components/Spot.svelte';
+<script lang="ts">
+	import SpotComponent from '$lib/components/Spot.svelte';
 	import { getCorrectDate } from '$lib/helpers';
 	import Header from '$lib/components/Header.svelte';
 	import { calendarName } from '$lib/stores/stores';
 	import { onMount } from 'svelte';
+
+	export let data;
 
 	const { calendar } = data;
 
@@ -14,6 +14,7 @@
 		month: 'long',
 		day: 'numeric'
 	};
+
 	onMount(() => {
 		calendarName.set(calendar.calendar.name);
 	});
@@ -33,7 +34,7 @@
 			<h2>{getCorrectDate(group.day, dateOptions)}</h2>
 			{#each group.spots as spot}
 				<div class="groupedSpots">
-					<Spot {spot} />
+					<SpotComponent {spot} />
 				</div>
 			{/each}
 		{/each}

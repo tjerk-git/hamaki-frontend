@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import { PUBLIC_BASE_URL } from '$env/static/public';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import Header from '$lib/components/Header.svelte';
 	import { selectedSpot, calendarName } from '$lib/stores/stores';
-	import { getCorrectDate, getTimeZone } from '$lib/helpers';
+	import { getCorrectDate, getTimeZone, goBack } from '$lib/helpers';
 	import { onMount } from 'svelte';
 
 	export let form;
@@ -69,7 +69,8 @@
 
 		{#if !form?.success && $selectedSpot.startDate}
 			<div class="spot__time">
-				<a class="link" href="javascript:history.back()">
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a class="link" href={'#'} on:click={goBack}>
 					<svg
 						width="24px"
 						height="16px"
@@ -119,7 +120,7 @@
 		{:else}
 			Hmm spot doesn't seem to load... try again?
 			<br /><br />
-			<a href="javascript:history.back()">Take me there!</a>
+			<a href={'#'} on:click={goBack}>Take me there!</a>
 		{/if}
 	</div>
 </main>

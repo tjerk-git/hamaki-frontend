@@ -1,7 +1,16 @@
 <script>
 	export let visible = false;
+	/**
+	 * @type {string}
+	 */
 	export let message;
+	/**
+	 * @type {() => void}
+	 */
 	export let onDismiss;
+	/**
+	 * @type {() => void}
+	 */
 	export let onAccept;
 
 	function dismiss() {

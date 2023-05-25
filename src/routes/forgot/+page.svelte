@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import toast, { Toaster } from 'svelte-french-toast';
 	import Header from '$lib/components/Header.svelte';
 	import Menu from '$lib/components/Menu.svelte';

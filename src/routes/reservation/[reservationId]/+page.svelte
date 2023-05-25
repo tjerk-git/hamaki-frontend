@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let data;
 	import Popup from '$lib/components/Popup.svelte';
 	import toast, { Toaster } from 'svelte-french-toast';
@@ -15,12 +15,10 @@
 		//console.log('yeah');
 	};
 
-	function cancelReservation(reservationId) {
+	function cancelReservation(reservationId: string) {
 		const response = fetch(`/api/cancel/${reservationId}`, {
 			method: 'DELETE'
 		});
-
-		console.log(response);
 
 		toast.success('Appointment has been cancelled');
 		popupVisible = false;

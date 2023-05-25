@@ -22,3 +22,7 @@ export const getTimeZone = () => {
     return Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 
+export const goBack = () => {
+    history.back()
+}
+

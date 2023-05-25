@@ -2,7 +2,7 @@ import { API_BASE_URL } from '$env/static/private';
 import type { RequestHandler } from '../$types';
 
 export const DELETE = (async ({ params }) => {
-    console.log(params.reservationId)
+    //console.log(params.reservationId)
 
     try {
         const res = await fetch(`${API_BASE_URL}/api/v1/reservation/delete/${params.reservationId}`, {
@@ -12,7 +12,7 @@ export const DELETE = (async ({ params }) => {
         const cancelResponse = await res.json();
         //console.log(calendar.groupedSpots[0].day);
 
-        console.log(cancelResponse);
+        //console.log(cancelResponse);
         // return { cancelResponse };
 
         return new Response(cancelResponse);
