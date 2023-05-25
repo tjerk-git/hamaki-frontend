@@ -3,7 +3,17 @@
 	import { PUBLIC_BASE_URL } from '$env/static/public';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import Header from '$lib/components/Header.svelte';
+	import { selectedSpot, calendarName } from '$lib/stores/stores';
+	import { getCorrectDate, getTimeZone } from '$lib/helpers';
+	import { onMount } from 'svelte';
+
 	export let form;
+
+	const dateOptions = {
+		hour: 'numeric',
+		minute: 'numeric',
+		hour12: false
+	};
 
 	const { spotId } = $page.params;
 
@@ -15,10 +25,16 @@
 			toast.error('Spot has been claimed!');
 		}
 	}
+
+	onMount(() => {
+		// sensible default
+		let timezone = 'Europe/Amsterdam';
+		timezone = getTimeZone();
+	});
 </script>
 
 <Toaster />
-<Header name="Reserve a spot" />
+<Header name={$calendarName} />
 <main>
 	<div class="reserve_container">
 		{#if form?.success}
@@ -77,7 +93,11 @@
 						</g>
 					</svg>
 				</a>
-				<h2>Claiming for 10:00 - 12:00</h2>
+				<h2>
+					Claiming a spot for:
+					<time>{getCorrectDate($selectedSpot.startDate, dateOptions)}</time> -
+					<time>{getCorrectDate($selectedSpot.endDate, dateOptions)}</time>
+				</h2>
 			</div>
 
 			<form method="POST" action="/reserve/{spotId}">
@@ -87,6 +107,11 @@
 				<label for="name">Name:</label>
 				<input type="text" name="name" id="name" required />
 
+				<label for="name">Leave a comment (optional)</label>
+				<textarea id="comment" name="comment" />
+
+				<input type="hidden" name="timezone" id="timezone" value={getTimeZone()} />
+
 				<button type="submit">Claim that spot!</button>
 			</form>
 		{/if}
@@ -94,6 +119,18 @@
 </main>
 
 <style>
+	textarea {
+		background: rgba(0, 0, 0, 30%);
+		color: #ffffff;
+		border: 1px solid #7958d6;
+		border-radius: 5px;
+		outline: none;
+		padding: 1.2rem;
+		font-size: 1.2rem;
+		width: 100%;
+		margin-bottom: 20px;
+		font-family: Inter;
+	}
 	.reserve_container {
 		margin-bottom: 20px;
 		padding: 20px;

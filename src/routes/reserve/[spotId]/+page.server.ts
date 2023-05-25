@@ -6,10 +6,14 @@ export const actions = {
         const data = await request.formData();
         const email = data.get('email');
         const name = data.get('name');
+        const comment = data.get('comment');
+        const timezone = data.get('timezone');
 
         const formData = {
             visitorEmail: email,
             visitorName: name,
+            comment: comment,
+            timezone: timezone,
             spotId: params.spotId,
         };
 

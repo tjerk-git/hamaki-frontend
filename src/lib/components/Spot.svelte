@@ -1,17 +1,7 @@
 <script>
-	// spot opslaan in store
-	// en die haal ik weer op bij de reservation pagina.
+	import { getCorrectDate } from '$lib/helpers';
+	import { selectedSpot } from '$lib/stores/stores';
 
-	const timeZonePromise = new Promise((resolve) => {
-		const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-		resolve(timeZone);
-	});
-
-	timeZonePromise.then((timeZone) => {
-		console.log(timeZone);
-	});
-
-	import getCorrectDate from '$lib/helpers';
 	const dateOptions = {
 		hour: 'numeric',
 		minute: 'numeric',
@@ -26,9 +16,13 @@
 			return `/reserve/${spot.spotId}`;
 		}
 	};
+
+	const saveSpot = (spot) => {
+		selectedSpot.set(spot);
+	};
 </script>
 
-<a href={getUrl(spot)}>
+<a href={getUrl(spot)} on:click={saveSpot(spot)}>
 	{#if spot.reservation}
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			><path

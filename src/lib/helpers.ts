@@ -1,6 +1,6 @@
 import getUserLocale from 'get-user-locale';
 
-const getCorrectDate = (spotDate, dateOptions) => {
+export const getCorrectDate = (spotDate, dateOptions) => {
 
     const timestamp = spotDate;
     const date = new Date(timestamp);
@@ -18,5 +18,7 @@ const getCorrectDate = (spotDate, dateOptions) => {
     return humanDate;
 };
 
+export const getTimeZone = () => {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
 
-export default getCorrectDate;

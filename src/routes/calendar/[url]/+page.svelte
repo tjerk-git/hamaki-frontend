@@ -2,8 +2,10 @@
 	/** @type {import('./$types').PageData} */
 	export let data;
 	import Spot from '$lib/components/Spot.svelte';
-	import getCorrectDate from '$lib/helpers';
+	import { getCorrectDate } from '$lib/helpers';
 	import Header from '$lib/components/Header.svelte';
+	import { calendarName } from '$lib/stores/stores';
+	import { onMount } from 'svelte';
 
 	const { calendar } = data;
 
@@ -12,12 +14,19 @@
 		month: 'long',
 		day: 'numeric'
 	};
+	onMount(() => {
+		calendarName.set(calendar.calendar.name);
+	});
 </script>
 
 {#await calendar}
 	Loading...
 {:then calendar}
 	<Header name={calendar.calendar.name} />
+
+	{#if calendar.calendar.owner.description}
+		<p>{calendar.calendar.owner.description}</p>
+	{/if}
 
 	<main>
 		{#each calendar.groupedSpots as group}
@@ -41,5 +50,9 @@
 	}
 	h2 {
 		margin-bottom: 20px;
+	}
+
+	p {
+		color: white;
 	}
 </style>
