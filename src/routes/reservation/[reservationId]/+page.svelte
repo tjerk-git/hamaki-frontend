@@ -12,7 +12,6 @@
 
 	const cancel = () => {
 		let res = cancelReservation(data.reservation.id);
-		console.log(res);
 		//console.log('yeah');
 	};
 

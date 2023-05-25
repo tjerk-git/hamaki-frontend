@@ -18,6 +18,18 @@
   src: url("../fonts/Inter-Medium.ttf") format("truetype");
 }
 
+a:visited{
+  color:grey;
+}
+
+a{
+  color:white;
+}
+
+a:hover{
+  color:green;
+}
+
 h1 {
   --font-size: 40pt;
   --typography-spacing-vertical: 3rem;

@@ -47,7 +47,7 @@
 				A comment was included: {form?.data.reservation?.comment}
 			{/if}
 
-			<br />
+			<br /><br />
 
 			<a target="_blank" href="{PUBLIC_BASE_URL}{form?.data.reservation?.icsURL}"
 				>Add to your calendar</a
@@ -67,7 +67,7 @@
 			<a href="/reserve/{spotId}">Try again</a>
 		{/if}
 
-		{#if !form?.success}
+		{#if !form?.success && $selectedSpot.startDate}
 			<div class="spot__time">
 				<a class="link" href="javascript:history.back()">
 					<svg
@@ -94,9 +94,11 @@
 					</svg>
 				</a>
 				<h2>
-					Claiming a spot for:
-					<time>{getCorrectDate($selectedSpot.startDate, dateOptions)}</time> -
-					<time>{getCorrectDate($selectedSpot.endDate, dateOptions)}</time>
+					{#if $selectedSpot.startDate}
+						Claiming a spot for:
+						<time>{getCorrectDate($selectedSpot.startDate, dateOptions)}</time> -
+						<time>{getCorrectDate($selectedSpot.endDate, dateOptions)}</time>
+					{/if}
 				</h2>
 			</div>
 
@@ -114,6 +116,10 @@
 
 				<button type="submit">Claim that spot!</button>
 			</form>
+		{:else}
+			Hmm spot doesn't seem to load... try again?
+			<br /><br />
+			<a href="javascript:history.back()">Take me there!</a>
 		{/if}
 	</div>
 </main>
