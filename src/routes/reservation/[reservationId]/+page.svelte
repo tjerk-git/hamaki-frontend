@@ -11,16 +11,29 @@
 	};
 
 	const cancel = () => {
-		let res = cancelReservation(data.reservation.id);
+		cancelReservation(data.reservation.id);
 		//console.log('yeah');
 	};
 
-	function cancelReservation(reservationId: string) {
-		const response = fetch(`/api/cancel/${reservationId}`, {
-			method: 'DELETE'
-		});
+	async function cancelReservation(reservationId) {
+		try {
+			const response = await fetch(`/api/cancel/${reservationId}`, {
+				method: 'DELETE'
+			});
 
-		toast.success('Appointment has been cancelled');
+			if (response.ok) {
+				toast.success('Appointment has been cancelled');
+				// Additional logic after successful cancellation
+			} else {
+				throw new Error('Failed to cancel appointment');
+			}
+		} catch (error) {
+			toast.error('An error occurred while cancelling the appointment');
+			console.error(error);
+			// Additional error handling
+		}
+
+		// Update popup visibility
 		popupVisible = false;
 	}
 
