@@ -1,12 +1,12 @@
 import { API_BASE_URL } from '$env/static/private';
 import type { Actions } from './$types';
 
-export const actions = {
+export const actions: Actions = {
     default: async ({ request }) => {
         const data = await request.formData();
         const email = data.get('email');
 
-        let urlOfCalendar = ""
+        let urlOfCalendar = '';
 
         const formData = {
             email: email,
@@ -22,22 +22,23 @@ export const actions = {
                 body: JSON.stringify(formData),
             });
 
+            if (!response.ok) {
+                let errorData: any = {};
 
-            if (response.status !== 200) {
-                const errorData = await response.json();
-                console.error('Error:', errorData);
-                return { success: false, data: errorData };
+                try {
+                    errorData = await response.json();
+                } catch (error) {
+                    console.log('Failed to parse response data:', error);
+                    throw new Error('Failed to parse response data');
+                }
+
+                return { success: false, data: JSON.stringify(errorData) };
+            } else {
+                const responseData = await response.json();
+                return { success: true, data: JSON.stringify(responseData) };
             }
-
-            const responseData = await response.json();
-
-            return { success: true, data: responseData };
-        } catch (error) {
-            //console.error('Error:', error);
-            // Handle any errors that occurred during the request
-
-            return { success: false, data: error };
+        } catch (error: any) {
+            return { success: false, data: JSON.stringify(error.message) };
         }
     },
-} satisfies Actions;
-
+};
