@@ -31,7 +31,6 @@
 
 			{#each group.spots as spot}
 				<div class="groupedSpots">
-					{@debug spot}
 					<SpotComponent {spot} />
 				</div>
 			{/each}
