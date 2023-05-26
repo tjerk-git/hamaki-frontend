@@ -3,10 +3,11 @@
 // Spot type definition
 type Spot = {
     spotId: string;
-    isDeleted: boolean;
+    isReserved: boolean;
     calendarId: string;
     startDate: Date;
     endDate: Date;
+    location: String;
 };
 
 // Owner type definition

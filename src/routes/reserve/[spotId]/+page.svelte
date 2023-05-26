@@ -100,6 +100,10 @@
 						<time>{getCorrectDate($selectedSpot.startDate, dateOptions)}</time> -
 						<time>{getCorrectDate($selectedSpot.endDate, dateOptions)}</time>
 					{/if}
+
+					{#if $selectedSpot.location}
+						at location: {$selectedSpot.location}
+					{/if}
 				</h2>
 			</div>
 

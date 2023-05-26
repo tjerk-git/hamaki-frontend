@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { getCorrectDate } from '$lib/helpers';
 	import { selectedSpot } from '$lib/stores/stores';
 
@@ -7,10 +7,11 @@
 		minute: 'numeric',
 		hour12: false
 	};
+
 	export let spot;
 
 	const getUrl = (spot) => {
-		if (spot.reservation) {
+		if (spot.isReserved) {
 			return '#';
 		} else {
 			return `/reserve/${spot.spotId}`;
@@ -23,7 +24,7 @@
 </script>
 
 <a href={getUrl(spot)} on:click={saveSpot(spot)}>
-	{#if spot.reservation}
+	{#if spot.isReserved}
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			><path
 				d="M8 10v-4c0-2.206 1.794-4 4-4 2.205 0 4 1.794 4 4v1h2v-1c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-13z"
@@ -40,6 +41,10 @@
 	<time>{getCorrectDate(spot.startDate, dateOptions)}</time>
 	-
 	<time>{getCorrectDate(spot.endDate, dateOptions)}</time>
+
+	<span class="location"
+		>{#if spot.location}{spot.location}{/if}</span
+	>
 
 	<span class="take-spot">
 		<!--?xml version="1.0" encoding="UTF-8"?-->
@@ -81,6 +86,11 @@
 	}
 	a span:last-child {
 		margin-left: auto;
+	}
+
+	.location {
+		color: grey;
+		font-size: 1rem;
 	}
 
 	svg {

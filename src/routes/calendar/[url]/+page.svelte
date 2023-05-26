@@ -25,15 +25,13 @@
 {:then calendar}
 	<Header name={calendar.calendar.name} />
 
-	{#if calendar.calendar.owner.description}
-		<p>{calendar.calendar.owner.description}</p>
-	{/if}
-
 	<main>
 		{#each calendar.groupedSpots as group}
 			<h2>{getCorrectDate(group.day, dateOptions)}</h2>
+
 			{#each group.spots as spot}
 				<div class="groupedSpots">
+					{@debug spot}
 					<SpotComponent {spot} />
 				</div>
 			{/each}
@@ -51,9 +49,5 @@
 	}
 	h2 {
 		margin-bottom: 20px;
-	}
-
-	p {
-		color: white;
 	}
 </style>
