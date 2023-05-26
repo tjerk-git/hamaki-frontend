@@ -22,23 +22,12 @@ export const actions: Actions = {
                 body: JSON.stringify(formData),
             });
 
-            if (!response.ok) {
-                let errorData: any = {};
-
-                try {
-                    errorData = await response.json();
-                } catch (error) {
-                    console.log('Failed to parse response data:', error);
-                    throw new Error('Failed to parse response data');
-                }
-
-                return { success: false, data: JSON.stringify(errorData) };
-            } else {
+            if (response.ok) {
                 const responseData = await response.json();
                 return { success: true, data: JSON.stringify(responseData) };
             }
         } catch (error: any) {
-            return { success: false, data: JSON.stringify(error.message) };
+            return { success: true, data: JSON.stringify(error.message) };
         }
     },
 };
