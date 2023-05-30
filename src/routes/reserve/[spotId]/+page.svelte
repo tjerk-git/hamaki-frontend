@@ -6,8 +6,31 @@
 	import { selectedSpot, calendarName } from '$lib/stores/stores';
 	import { getCorrectDate, getTimeZone, goBack } from '$lib/helpers';
 	import { onMount } from 'svelte';
+	import { Confetti } from 'svelte-confetti';
 
 	export let form;
+
+	let showConfetti = false;
+	const duration = 2000;
+
+	let things = [];
+	let timeout;
+
+	async function moveConfetti(event) {
+		const { target, clientX, clientY } = event;
+
+		const elementY = target.getBoundingClientRect().top;
+		const elementX = target.getBoundingClientRect().left;
+
+		const x = clientX - elementX;
+		const y = clientY - elementY;
+
+		things = [...things, { x, y }];
+
+		clearTimeout(timeout);
+
+		timeout = setTimeout(() => (things = []), duration);
+	}
 
 	const dateOptions = {
 		hour: 'numeric',
@@ -31,27 +54,57 @@
 		let timezone = 'Europe/Amsterdam';
 		timezone = getTimeZone();
 	});
+
+	const isObjectEmpty = (objectName) => {
+		return Object.keys(objectName).length === 0;
+	};
 </script>
 
 <Toaster />
 <Header name={$calendarName} />
 <main>
 	<div class="reserve_container">
+		{#if isObjectEmpty($selectedSpot)}
+			<h1>Spot has been reserved</h1>
+			<br /><br />
+		{/if}
+
 		{#if form?.success}
 			<!-- this message is ephemeral; it exists because the page was rendered in
            response to a form submission. it will vanish if the user reloads -->
 
-			<p>Thanks {form?.data.reservation?.visitor?.name} for reserving a spot!</p>
-
-			{#if form?.data.reservation?.comment}
-				A comment was included: {form?.data.reservation?.comment}
-			{/if}
-
-			<br /><br />
-
-			<a target="_blank" href="{PUBLIC_BASE_URL}{form?.data.reservation?.icsURL}"
-				>Add to your calendar</a
+			<a
+				class="outline"
+				href="{PUBLIC_BASE_URL}{form?.data.reservation?.icsURL}"
+				target="_blank"
+				style="text-decoration: none;"
 			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					style="vertical-align: middle;"
+				>
+					<path
+						d="M17 3v-2c0-.552.447-1 1-1s1 .448 1 1v2c0 .552-.447 1-1 1s-1-.448-1-1zm-12 1c.553 0 1-.448 1-1v-2c0-.552-.447-1-1-1-.553 0-1 .448-1 1v2c0 .552.447 1 1 1zm13 13v-3h-1v4h3v-1h-2zm-5 .5c0 2.481 2.019 4.5 4.5 4.5s4.5-2.019 4.5-4.5-2.019-4.5-4.5-4.5-4.5 2.019-4.5 4.5zm11 0c0 3.59-2.91 6.5-6.5 6.5s-6.5-2.91-6.5-6.5 2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5zm-14.237 3.5h-7.763v-13h19v1.763c.727.33 1.399.757 2 1.268v-9.031h-3v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-9v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-3v21h11.031c-.511-.601-.938-1.273-1.268-2z"
+						fill="#FFFFFF"
+					/>
+				</svg>
+				<span style="vertical-align: middle; margin-left: 4px;">add to your own calendar</span>
+			</a>
+
+			<span class="textInCenter">or.....</span>
+
+			<div class="box" on:click={moveConfetti}>
+				<button>Just give me confetti</button>
+
+				{#each things as thing}
+					<div class="mover" style="left: {thing.x}px; top: {thing.y}px">
+						<Confetti y={[-0.5, 0.5]} fallDistance="20px" amount="10" {duration} />
+					</div>
+				{/each}
+			</div>
 		{/if}
 
 		{#if form?.success === false}
@@ -126,6 +179,13 @@
 </main>
 
 <style>
+	.textInCenter {
+		text-align: center;
+		margin-top: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	textarea {
 		background: rgba(0, 0, 0, 30%);
 		color: #ffffff;
@@ -142,6 +202,7 @@
 		margin-bottom: 20px;
 		padding: 20px;
 	}
+
 	.spot__time {
 		display: flex;
 		align-items: center;
@@ -183,6 +244,23 @@
 		text-align: center;
 		width: 100%;
 	}
+	.outline {
+		background: #45219a;
+		color: white;
+		text-decoration: none;
+		text-align: left;
+		border-radius: 15px;
+		border: none;
+		cursor: pointer;
+		padding: 1rem;
+		border-radius: 10px;
+		outline: none;
+		font-size: 1rem;
+		line-height: 1.25;
+		text-align: center;
+		width: 100%;
+		display: block;
+	}
 	.link {
 		display: inline-block;
 		padding-top: 10px;
@@ -194,5 +272,24 @@
 	h2 {
 		font-size: 1.75rem;
 		font-family: Inter;
+	}
+
+	.box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		height: 10rem;
+		width: 100%;
+		border-radius: 0.5rem;
+		user-select: none;
+	}
+
+	.mover {
+		position: absolute;
+	}
+
+	span {
+		pointer-events: none;
 	}
 </style>
