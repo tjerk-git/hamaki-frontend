@@ -2,6 +2,7 @@
 	import SpotComponent from '$lib/components/Spot.svelte';
 	import { getCorrectDate } from '$lib/helpers';
 	import Header from '$lib/components/Header.svelte';
+	import Menu from '$lib/components/Menu.svelte';
 	import { calendarName } from '$lib/stores/stores';
 	import { onMount } from 'svelte';
 
@@ -24,7 +25,7 @@
 	Loading...
 {:then calendar}
 	<Header name={calendar.calendar.name} />
-
+	<Menu calendarUrl={calendar.calendar.url} />
 	<main>
 		{#each calendar.groupedSpots as group}
 			<h2>{getCorrectDate(group.day, dateOptions)}</h2>

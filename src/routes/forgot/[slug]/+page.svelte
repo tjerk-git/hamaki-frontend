@@ -4,6 +4,9 @@
 	import toast, { Toaster } from 'svelte-french-toast';
 	import Header from '$lib/components/Header.svelte';
 	import Menu from '$lib/components/Menu.svelte';
+	import { page } from '$app/stores';
+
+	const { slug } = $page.params;
 
 	$: {
 		if (form?.success) {
@@ -41,7 +44,7 @@
 	<h1>Forgot my appointment</h1>
 	<p>No worries, that can happen just enter your e-mail and we will send your appointments</p>
 	<br /><br />
-	<form method="POST">
+	<form method="POST" action="/forgot/{slug}">
 		<label for="email">Email:</label>
 		<input type="email" name="email" id="email" required />
 		<button type="submit">Send me an email!</button>
@@ -56,5 +59,36 @@
 		border-radius: 10px;
 		margin-bottom: 20px;
 		margin-top: 20px;
+	}
+	input[type='text'],
+	input[type='email'] {
+		background: rgba(0, 0, 0, 30%);
+		color: #ffffff;
+		border: 1px solid #7958d6;
+		border-radius: 5px;
+		outline: none;
+		padding: 1.2rem;
+		font-size: 1.2rem;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	label {
+		display: block;
+	}
+	button {
+		background: #e7e4ee;
+		color: #7958d6;
+		text-decoration: none;
+		text-align: left;
+		border-radius: 15px;
+		border: none;
+		cursor: pointer;
+		padding: 1rem;
+		border-radius: 10px;
+		outline: none;
+		font-size: 1rem;
+		line-height: 1.25;
+		text-align: center;
+		width: 100%;
 	}
 </style>

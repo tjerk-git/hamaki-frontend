@@ -1,16 +1,14 @@
 import { API_BASE_URL } from '$env/static/private';
-import type { Actions } from './$types';
+import type { Actions } from '../$types';
 
 export const actions: Actions = {
-    default: async ({ request }) => {
+    default: async ({ request, params }) => {
         const data = await request.formData();
         const email = data.get('email');
 
-        let urlOfCalendar = '';
-
         const formData = {
             email: email,
-            urlOfCalendar: urlOfCalendar
+            urlOfCalendar: params.slug,
         };
 
         try {

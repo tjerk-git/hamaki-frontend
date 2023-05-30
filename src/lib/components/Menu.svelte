@@ -1,7 +1,13 @@
+<script lang="ts">
+	export let calendarUrl = '';
+</script>
+
 <nav>
 	<ul>
 		<li><a href="/about">About</a></li>
-		<li><a href="/forgot">Forgot my appointment</a></li>
+		{#if calendarUrl}
+			<li><a href="/forgot/{calendarUrl}">Forgot my appointment</a></li>
+		{/if}
 		<li><a href="#appstore">Download Hamaki for macOs</a></li>
 	</ul>
 </nav>

@@ -3,6 +3,7 @@
 	import Popup from '$lib/components/Popup.svelte';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import { PUBLIC_BASE_URL } from '$env/static/public';
+	import Menu from '$lib/components/Menu.svelte';
 
 	let popupVisible = false;
 	let message = 'Are you sure you want to cancel the appointment?';
@@ -44,6 +45,8 @@
 </script>
 
 <Toaster />
+
+<Menu />
 
 <main>
 	<h2>Hey there!</h2>
