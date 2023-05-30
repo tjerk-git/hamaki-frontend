@@ -121,10 +121,6 @@
 
 				<button type="submit">Claim that spot!</button>
 			</form>
-		{:else}
-			Hmm spot doesn't seem to load... try again?
-			<br /><br />
-			<a href={'#'} on:click={goBack}>Take me there!</a>
 		{/if}
 	</div>
 </main>
