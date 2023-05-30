@@ -2,6 +2,7 @@
 	export let data;
 	import Popup from '$lib/components/Popup.svelte';
 	import toast, { Toaster } from 'svelte-french-toast';
+	import { PUBLIC_BASE_URL } from '$env/static/public';
 
 	let popupVisible = false;
 	let message = 'Are you sure you want to cancel the appointment?';
@@ -45,12 +46,38 @@
 <Toaster />
 
 <main>
-	<h2>Hey there, {data.reservation.visitor.name}</h2>
+	<h2>Hey there!</h2>
+	<br /><br />
+	<p>You can download your appointment here below, in case you forgot.</p>
+	<p>Or you could cancel your appointment.</p>
+	<br /><br />
 
-	<button on:click={showPopup}> Cancel this appointment </button>
+	<a target="_blank" class="outline" href="{PUBLIC_BASE_URL}{data.reservation.icsURL}"
+		>Add to your calendar</a
+	>
+
+	<button class="outline" on:click={showPopup}> Cancel this appointment </button>
 
 	<Popup {message} onDismiss={dismiss} onAccept={cancel} visible={popupVisible} />
 </main>
 
 <style>
+	.outline {
+		border: 2px solid #7958d6;
+		color: white;
+		background-color: transparent;
+		padding: 1.2rem;
+		border-radius: 10px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		margin-right: 10px;
+		margin-top: 10px;
+		text-decoration: none;
+		font-size: 1.2rem;
+	}
+
+	.outline:hover {
+		background-color: #b49bf9;
+		color: #fff;
+	}
 </style>

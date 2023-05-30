@@ -9,8 +9,6 @@ export async function load({ fetch, params }) {
         const res = await fetch(url);
         const reservation = await res.json();
         //console.log(calendar.groupedSpots[0].day);
-
-        //console.log(reservation);
         return { reservation };
     } catch (error) {
         console.error(`Error in load function for /: ${error}`);
