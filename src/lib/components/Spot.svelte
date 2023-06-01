@@ -93,13 +93,16 @@
 		font-size: 1rem;
 	}
 
+	time:last-child {
+		margin-right: 1rem;
+	}
+
 	svg {
 		fill: #4d1fc8;
 		margin-right: 20px;
 	}
 
 	span {
-		margin-right: 10px;
 		margin-left: 20px;
 	}
 </style>
