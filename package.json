@@ -31,9 +31,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@auth0/auth0-spa-js": "^2.0.4",
 		"dayjs": "^1.11.7",
 		"get-user-locale": "^2.2.1",
+		"gsap": "^3.11.5",
 		"svelte-confetti": "^1.2.2",
 		"svelte-french-toast": "^1.0.4-beta.0"
 	}
