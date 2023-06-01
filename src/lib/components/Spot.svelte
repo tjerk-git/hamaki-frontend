@@ -42,9 +42,7 @@
 	-
 	<time>{getCorrectDate(spot.endDate, dateOptions)}</time>
 
-	<span class="location"
-		>{#if spot.location}{spot.location}{/if}</span
-	>
+	{#if spot.location} <span class="location">{spot.location}</span>{/if}
 
 	<span class="take-spot">
 		<!--?xml version="1.0" encoding="UTF-8"?-->
@@ -93,7 +91,7 @@
 		font-size: 1rem;
 	}
 
-	time:last-child {
+	time:last-of-type {
 		margin-right: 1rem;
 	}
 
