@@ -28,7 +28,9 @@
 	<Menu calendarUrl={calendar.calendar.url} />
 	<main>
 		{#if calendar.calendar.description}
+			<br />
 			<p id="description">{calendar.calendar.description}</p>
+			<br /><br />
 		{/if}
 		{#each calendar.groupedSpots as group}
 			<h2>{getCorrectDate(group.day, dateOptions)}</h2>
