@@ -101,8 +101,4 @@
 		fill: #4d1fc8;
 		margin-right: 20px;
 	}
-
-	span {
-		margin-left: 20px;
-	}
 </style>
