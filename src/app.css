@@ -33,7 +33,7 @@ a:hover{
 h1 {
   --font-size: 40pt;
   --typography-spacing-vertical: 3rem;
-  font-family: Inter;
+  font-family: ThunderBold;
 }
 
 h2 {
