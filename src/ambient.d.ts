@@ -1,7 +1,7 @@
 // types.d.ts
 
-// Spot type definition
-type Spot = {
+
+interface Spot {
     spotId: string;
     isReserved: boolean;
     calendarId: string;
@@ -10,15 +10,14 @@ type Spot = {
     location: String;
 };
 
-// Owner type definition
-type Owner = {
+interface Owner {
     email: string;
     description: string;
     appId: string;
 };
 
-// Calendar type definition
-type Calendar = {
+
+interface Calendar {
     name: string;
     spots: Spot[];
     url: string;
