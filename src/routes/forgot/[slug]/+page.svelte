@@ -5,6 +5,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import Menu from '$lib/components/Menu.svelte';
 	import { page } from '$app/stores';
+	import { goBack } from '$lib/helpers.js';
 
 	const { slug } = $page.params;
 
@@ -65,7 +66,7 @@
 			</g>
 		</svg>
 	</a>
-	<h1>Forgot my appointment</h1>
+	<h2>Forgot my appointment</h2>
 	<p>No worries, that can happen just enter your e-mail and we will send your appointments</p>
 	<br /><br />
 	<form method="POST" action="/forgot/{slug}">
