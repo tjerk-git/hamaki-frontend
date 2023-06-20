@@ -13,7 +13,7 @@
 	};
 
 	const cancel = () => {
-		cancelReservation(data.reservation.id);
+		cancelReservation(data.reservationId);
 		//console.log('yeah');
 	};
 

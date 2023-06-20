@@ -8,8 +8,10 @@ export async function load({ fetch, params }) {
     try {
         const res = await fetch(url);
         const reservation = await res.json();
+        
+        const reservationId = params.reservationId;
         //console.log(calendar.groupedSpots[0].day);
-        return { reservation };
+        return { reservation, reservationId };
     } catch (error) {
         console.error(`Error in load function for /: ${error}`);
     }
