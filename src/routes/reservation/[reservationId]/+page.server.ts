@@ -4,6 +4,7 @@ import { API_VERSION } from '$env/static/private';
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }) {
     const url = `${API_BASE_URL}/${API_VERSION}/reservation/${params.reservationId}`;
+    const reservation = {};
 
     try {
         const res = await fetch(url);
@@ -12,10 +13,8 @@ export async function load({ fetch, params }) {
 
         return { reservation, reservationId };
     } catch (error) {
-        const reservation = {};
         return reservation;
     }
-
 }
 
 
