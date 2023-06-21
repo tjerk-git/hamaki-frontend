@@ -17,25 +17,15 @@
 		//console.log('yeah');
 	};
 
-	async function cancelReservation(reservationId) {
+	async function cancelReservation(reservationId: number) {
 		try {
 			const response = await fetch(`/api/cancel/${reservationId}`, {
 				method: 'DELETE'
 			});
-
-			if (response.ok) {
-				toast.success('Appointment has been cancelled');
-				// Additional logic after successful cancellation
-			} else {
-				throw new Error('Failed to cancel appointment');
-			}
+			toast.success('Appointment has been cancelled');
 		} catch (error) {
-			toast.error('An error occurred while cancelling the appointment');
-			console.error(error);
-			// Additional error handling
+			console.log(error);
 		}
-
-		// Update popup visibility
 		popupVisible = false;
 	}
 
@@ -72,10 +62,10 @@
 				fill="#FFFFFF"
 			/>
 		</svg>
-		<span style="vertical-align: middle; margin-left: 4px;">add to calendar</span>
+		<span style="vertical-align: middle; margin-left: 4px;">Add to calendar</span>
 	</a>
 
-	<button class="outline" on:click={showPopup}> Cancel this appointment </button>
+	<button class="outline" on:click={showPopup}>Cancel this appointment </button>
 
 	<Popup {message} onDismiss={dismiss} onAccept={cancel} visible={popupVisible} />
 </main>
