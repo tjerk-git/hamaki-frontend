@@ -17,7 +17,7 @@
 		//console.log('yeah');
 	};
 
-	async function cancelReservation(reservationId: number) {
+	async function cancelReservation(reservationId) {
 		try {
 			const response = await fetch(`/api/cancel/${reservationId}`, {
 				method: 'DELETE'
