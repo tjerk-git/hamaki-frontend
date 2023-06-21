@@ -11,7 +11,7 @@ export async function load({ fetch, params }) {
         const reservation = await res.json();
         const reservationId = params.reservationId;
 
-        if (!res.ok || !reservation.reservationId) {
+        if (!res.ok) {
             throw Error("404");
         }
 
