@@ -11,10 +11,15 @@ export async function load({ fetch, params }) {
         const reservation = await res.json();
         const reservationId = params.reservationId;
 
+        if (!res.ok || !reservation.reservationId) {
+            throw Error("404");
+        }
+
         return { reservation, reservationId };
     } catch (error) {
         return reservation;
     }
+
 }
 
 
