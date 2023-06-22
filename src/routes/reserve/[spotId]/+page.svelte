@@ -73,6 +73,15 @@
 <Toaster />
 <Header name={$calendarName} />
 <main>
+	{#if browser && confettiBurst}
+		<ConfettiBurst
+			origin={[
+				random((window.innerWidth / 4) * 3, window.innerWidth / 4),
+				random((window.innerHeight / 4) * 3, window.innerHeight / 4)
+			]}
+		/>
+	{/if}
+
 	<div class="reserve_container">
 		{#if isObjectEmpty($selectedSpot)}
 			<h1>Spot has been reserved</h1>
@@ -86,15 +95,6 @@
 			<FallingConfetti />
 
 			{#if browser}
-				{#if confettiBurst}
-					<ConfettiBurst
-						origin={[
-							random((window.innerWidth / 4) * 3, window.innerWidth / 4),
-							random((window.innerHeight / 4) * 3, window.innerHeight / 4)
-						]}
-					/>
-				{/if}
-
 				<ConfettiBurst
 					origin={[
 						random((window.innerWidth / 4) * 3, window.innerWidth / 4),
