@@ -55,19 +55,7 @@
 		}
 
 		if (confettiObsessionCounter > 3) {
-			toast.success('OH GOD!');
-		}
-
-		if (confettiObsessionCounter > 10) {
 			toast.success('MOAR!');
-		}
-
-		if (confettiObsessionCounter > 15) {
-			toast.success('MOOOOOOOORE!!!!');
-		}
-
-		if (confettiObsessionCounter > 20) {
-			toast.success('Ok stop it now..');
 		}
 	}
 
@@ -98,6 +86,15 @@
 			<FallingConfetti />
 
 			{#if browser}
+				{#if confettiBurst}
+					<ConfettiBurst
+						origin={[
+							random((window.innerWidth / 4) * 3, window.innerWidth / 4),
+							random((window.innerHeight / 4) * 3, window.innerHeight / 4)
+						]}
+					/>
+				{/if}
+
 				<ConfettiBurst
 					origin={[
 						random((window.innerWidth / 4) * 3, window.innerWidth / 4),
