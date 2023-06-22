@@ -3,6 +3,8 @@
 	import { browser } from '$app/environment';
 	import { tick } from 'svelte';
 
+	let confettiQue = ['one'];
+
 	const makeFallingConfetti = async () => {
 		fallingConfetti = false;
 		await tick();
@@ -16,9 +18,9 @@
 	};
 
 	const makeConfettiCannon = async () => {
-		confettiCannon = false;
-		await tick();
-		confettiCannon = true;
+		confettiCannon = !confettiCannon;
+
+		confettiQue.push('more');
 	};
 
 	let fallingConfetti = false;
@@ -27,6 +29,17 @@
 </script>
 
 <FallingConfetti />
+
+{#if browser && confettiCannon}
+	{#each confettiQue as que}
+		<ConfettiCannon
+			origin={[window.innerWidth / 2, window.innerHeight]}
+			angle={Math.floor(Math.random() * (360 - 0 + 1) + 0)}
+			spread={Math.floor(Math.random() * (0 - 100 + 1) + 0)}
+			force={Math.floor(Math.random() * (0 - 100 + 1) + 0)}
+		/>
+	{/each}
+{/if}
 
 {#if browser}
 	<ConfettiBurst
@@ -43,3 +56,7 @@
 		force={35}
 	/>
 {/if}
+
+<div class="box" on:click={makeConfettiCannon}>
+	<button>MORE CONFETTI</button>
+</div>

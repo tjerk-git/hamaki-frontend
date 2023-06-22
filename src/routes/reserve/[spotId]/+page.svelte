@@ -8,33 +8,6 @@
 	import { onMount } from 'svelte';
 	import { FallingConfetti, ConfettiBurst, ConfettiCannon, random } from 'svelte-canvas-confetti';
 	import { browser } from '$app/environment';
-	import { tick } from 'svelte';
-
-	let confettiObsessionCounter = 0;
-
-	const makeFallingConfetti = async () => {
-		fallingConfetti = false;
-		await tick();
-		fallingConfetti = true;
-	};
-
-	const makeConfettiBurst = async () => {
-		confettiBurst = false;
-		await tick();
-		confettiBurst = true;
-	};
-
-	const makeConfettiCannon = async () => {
-		confettiCannon = false;
-		await tick();
-		confettiCannon = true;
-
-		confettiObsessionCounter++;
-	};
-
-	let fallingConfetti = false;
-	let confettiBurst = false;
-	let confettiCannon = false;
 
 	export let form;
 
@@ -46,16 +19,20 @@
 
 	const { spotId } = $page.params;
 
+	let confettiCannon = false;
+	let confettiQue = ['one'];
+
+	const makeConfettiCannon = async () => {
+		confettiCannon = !confettiCannon;
+		confettiQue.push('more');
+	};
+
 	$: {
 		if (form?.success) {
 			toast.success('Spot claimed!');
 		}
 		if (form?.success === false) {
 			toast.error('Spot has been claimed!');
-		}
-
-		if (confettiObsessionCounter > 3) {
-			toast.success('MOAR!');
 		}
 	}
 
@@ -73,13 +50,15 @@
 <Toaster />
 <Header name={$calendarName} />
 <main>
-	{#if browser && confettiBurst}
-		<ConfettiBurst
-			origin={[
-				random((window.innerWidth / 4) * 3, window.innerWidth / 4),
-				random((window.innerHeight / 4) * 3, window.innerHeight / 4)
-			]}
-		/>
+	{#if browser && confettiCannon}
+		{#each confettiQue as que}
+			<ConfettiCannon
+				origin={[window.innerWidth / 2, window.innerHeight]}
+				angle={Math.floor(Math.random() * (360 - 0 + 1) + 0)}
+				spread={Math.floor(Math.random() * (0 - 100 + 1) + 0)}
+				force={Math.floor(Math.random() * (0 - 100 + 1) + 0)}
+			/>
+		{/each}
 	{/if}
 
 	<div class="reserve_container">

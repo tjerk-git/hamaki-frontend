@@ -14,6 +14,11 @@
 
 	const cancel = () => {
 		cancelReservation(data.reservationId);
+
+		// set timeout for 2 seconds
+		setTimeout(() => {
+			throw Error('404');
+		}, 2000);
 	};
 
 	async function cancelReservation(reservationId) {
@@ -22,11 +27,6 @@
 				method: 'DELETE'
 			});
 			toast.success('Appointment has been cancelled');
-
-			// set timeout for 2 seconds
-			setTimeout(() => {
-				throw Error('404');
-			}, 2000);
 		} catch (error) {}
 		popupVisible = false;
 	}
