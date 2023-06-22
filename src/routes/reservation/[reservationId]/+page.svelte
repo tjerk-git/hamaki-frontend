@@ -22,6 +22,11 @@
 				method: 'DELETE'
 			});
 			toast.success('Appointment has been cancelled');
+
+			// set timeout for 2 seconds
+			setTimeout(() => {
+				throw Error('404');
+			}, 2000);
 		} catch (error) {}
 		popupVisible = false;
 	}
