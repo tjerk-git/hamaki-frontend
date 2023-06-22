@@ -6,31 +6,37 @@
 	import { selectedSpot, calendarName } from '$lib/stores/stores';
 	import { getCorrectDate, getTimeZone, goBack } from '$lib/helpers';
 	import { onMount } from 'svelte';
-	import { Confetti } from 'svelte-confetti';
+	import { FallingConfetti, ConfettiBurst, ConfettiCannon, random } from 'svelte-canvas-confetti';
+	import { browser } from '$app/environment';
+	import { tick } from 'svelte';
+
+	let confettiObsessionCounter = 0;
+
+	const makeFallingConfetti = async () => {
+		fallingConfetti = false;
+		await tick();
+		fallingConfetti = true;
+	};
+
+	const makeConfettiBurst = async () => {
+		confettiBurst = false;
+		await tick();
+		confettiBurst = true;
+	};
+
+	const makeConfettiCannon = async () => {
+		confettiCannon = false;
+		await tick();
+		confettiCannon = true;
+
+		confettiObsessionCounter++;
+	};
+
+	let fallingConfetti = false;
+	let confettiBurst = false;
+	let confettiCannon = false;
 
 	export let form;
-
-	let showConfetti = false;
-	const duration = 2000;
-
-	let things = [];
-	let timeout;
-
-	async function moveConfetti(event) {
-		const { target, clientX, clientY } = event;
-
-		const elementY = target.getBoundingClientRect().top;
-		const elementX = target.getBoundingClientRect().left;
-
-		const x = clientX - elementX;
-		const y = clientY - elementY;
-
-		things = [...things, { x, y }];
-
-		clearTimeout(timeout);
-
-		timeout = setTimeout(() => (things = []), duration);
-	}
 
 	const dateOptions = {
 		hour: 'numeric',
@@ -46,6 +52,22 @@
 		}
 		if (form?.success === false) {
 			toast.error('Spot has been claimed!');
+		}
+
+		if (confettiObsessionCounter > 3) {
+			toast.success('OH GOD!');
+		}
+
+		if (confettiObsessionCounter > 10) {
+			toast.success('MOAR!');
+		}
+
+		if (confettiObsessionCounter > 15) {
+			toast.success('MOOOOOOOORE!!!!');
+		}
+
+		if (confettiObsessionCounter > 20) {
+			toast.success('Ok stop it now..');
 		}
 	}
 
@@ -73,6 +95,24 @@
 			<!-- this message is ephemeral; it exists because the page was rendered in
            response to a form submission. it will vanish if the user reloads -->
 
+			<FallingConfetti />
+
+			{#if browser}
+				<ConfettiBurst
+					origin={[
+						random((window.innerWidth / 4) * 3, window.innerWidth / 4),
+						random((window.innerHeight / 4) * 3, window.innerHeight / 4)
+					]}
+				/>
+
+				<ConfettiCannon
+					origin={[window.innerWidth / 2, window.innerHeight]}
+					angle={-90}
+					spread={35}
+					force={35}
+				/>
+			{/if}
+
 			<a
 				class="outline"
 				href="{PUBLIC_BASE_URL}{form?.data.reservation?.icsURL}"
@@ -95,15 +135,9 @@
 			</a>
 
 			<span class="textInCenter">or.....</span>
-
-			<div class="box" on:click={moveConfetti}>
-				<button>Just give me confetti</button>
-
-				{#each things as thing}
-					<div class="mover" style="left: {thing.x}px; top: {thing.y}px">
-						<Confetti y={[-0.5, 0.5]} fallDistance="20px" amount="10" {duration} />
-					</div>
-				{/each}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div class="box" on:click={makeConfettiCannon}>
+				<button>MORE CONFETTI</button>
 			</div>
 		{/if}
 
