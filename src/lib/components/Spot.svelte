@@ -12,7 +12,7 @@
 
 	const getUrl = (spot) => {
 		if (spot.isReserved) {
-			return '#';
+			return '';
 		} else {
 			return `/reserve/${spot.spotId}`;
 		}
@@ -23,7 +23,7 @@
 	};
 </script>
 
-<a href={getUrl(spot)} on:click={saveSpot(spot)}>
+<a href={getUrl(spot)} on:click={saveSpot(spot)} class:reserved={spot.isReserved}>
 	{#if spot.isReserved}
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			><path
@@ -98,5 +98,8 @@
 	svg {
 		fill: #4d1fc8;
 		margin-right: 20px;
+	}
+	.reserved {
+		opacity: 0.4;
 	}
 </style>
