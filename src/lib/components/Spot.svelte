@@ -38,7 +38,8 @@
 <a
 	href={getUrl(spot)}
 	on:click={saveSpot(spot)}
-	class:reserved={spot.isReserved || isReservable(spot, 4)}
+	class:reserved={spot.isReserved ||
+		isReservable(spot, calendar.calendar.allowReservationUpUntilHoursBefore)}
 >
 	{#if spot.isReserved}
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
