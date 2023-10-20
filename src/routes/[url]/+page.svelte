@@ -32,20 +32,19 @@
 			<p id="description">{calendar.calendar.description}</p>
 			<br /><br />
 		{/if}
+
+		{#if calendar.groupedSpots.length === 0}
+			<h1>Whoa there, no spots available</h1>
+		{/if}
+
 		{#each calendar.groupedSpots as group}
 			<h2>{getCorrectDate(group.day, dateOptions)}</h2>
 
 			{#each group.spots as spot}
 				<div class="groupedSpots">
-					<SpotComponent {spot} />
+					<SpotComponent {spot} {calendar} />
 				</div>
 			{/each}
-
-			{#if group.spots.length === 0}
-				<main>
-					<h1>Whoa there, no spots available</h1>
-				</main>
-			{/if}
 		{/each}
 	</main>
 {:catch}

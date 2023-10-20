@@ -9,6 +9,7 @@
 	};
 
 	export let spot;
+	export let calendar;
 
 	const getUrl = (spot) => {
 		if (spot.isReserved) {
