@@ -20,7 +20,7 @@ export async function load({ fetch, params }) {
         return { calendar };
     } catch (things) {
         throw error(404, {
-            message: 'Really sorry Hamaki servers are offline'
+            message: "Hmm, we can't find this calendar, did you check the url?"
         });
     }
 
