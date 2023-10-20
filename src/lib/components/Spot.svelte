@@ -21,9 +21,24 @@
 	const saveSpot = (spot) => {
 		selectedSpot.set(spot);
 	};
+
+	const isReservable = (spot, hoursLater) => {
+		const now = new Date();
+		const fourHoursLater = new Date(now.getTime() + hoursLater * 60 * 60 * 1000);
+
+		if (spot.startDate > now && spot.startDate < fourHoursLater) {
+			return true;
+		} else {
+			return false;
+		}
+	};
 </script>
 
-<a href={getUrl(spot)} on:click={saveSpot(spot)} class:reserved={spot.isReserved}>
+<a
+	href={getUrl(spot)}
+	on:click={saveSpot(spot)}
+	class:reserved={spot.isReserved || isReservable(spot, 4)}
+>
 	{#if spot.isReserved}
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			><path
