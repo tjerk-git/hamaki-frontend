@@ -23,11 +23,11 @@
 		selectedSpot.set(spot);
 	};
 
-	const isReservable = (spot, hoursLater) => {
+	const isReservable = (spot, hours) => {
 		const now = new Date();
-		const fourHoursLater = new Date(now.getTime() + hoursLater * 60 * 60 * 1000);
+		const hoursLater = new Date(now.getTime() + hours * 60 * 60 * 1000);
 
-		if (spot.startDate > fourHoursLater) {
+		if (spot.startDate > hoursLater) {
 			return true;
 		} else {
 			return false;
@@ -38,8 +38,7 @@
 <a
 	href={getUrl(spot)}
 	on:click={saveSpot(spot)}
-	class:reserved={spot.isReserved ||
-		isReservable(spot, calendar.calendar.allowReservationUpUntilHoursBefore)}
+	class:reserved={spot.isReserved || isReservable(spot, 4)}
 >
 	{#if spot.isReserved}
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
