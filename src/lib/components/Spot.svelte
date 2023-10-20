@@ -27,7 +27,7 @@
 		const now = new Date();
 		const fourHoursLater = new Date(now.getTime() + hoursLater * 60 * 60 * 1000);
 
-		if (spot.startDate > now && spot.startDate < fourHoursLater) {
+		if (spot.startDate > fourHoursLater) {
 			return true;
 		} else {
 			return false;
