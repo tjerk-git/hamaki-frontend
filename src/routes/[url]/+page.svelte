@@ -40,6 +40,12 @@
 					<SpotComponent {spot} />
 				</div>
 			{/each}
+
+			{#if group.spots.length === 0}
+				<main>
+					<h1>Whoa there, no spots available</h1>
+				</main>
+			{/if}
 		{/each}
 	</main>
 {:catch}
