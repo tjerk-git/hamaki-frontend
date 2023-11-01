@@ -11,7 +11,7 @@ export async function load({ fetch, params }) {
 
         if (!res.ok) {
             throw error(404, {
-                message: "Hmm, we can't find this calendar"
+                message: "📅 Whoops, we can't find this calendar, sorry"
             });
         }
 
@@ -20,7 +20,7 @@ export async function load({ fetch, params }) {
         return { calendar };
     } catch (things) {
         throw error(404, {
-            message: "Hmm, we can't find this calendar, did you check the url?"
+            message: "📅 Whoops, we can't find this calendar, sorry"
         });
     }
 

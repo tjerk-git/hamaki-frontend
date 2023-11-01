@@ -4,8 +4,6 @@
 
 <main>
 	<div class="error-container">
-		<h2>{$page.error.message}</h2>
-
 		<svg
 			width="40px"
 			height="45px"
@@ -75,20 +73,23 @@
 				</g>
 			</g>
 		</svg>
+
+		<h2>{$page.error.message}</h2>
 	</div>
 </main>
 
 <style>
 	.error-container {
-		background-color: #f8d7da;
-		border: 1px solid #f5c6cb;
+		background-color: #ececec;
+		border: 1px solid #a2a2a2;
 		border-radius: 4px;
 		padding: 16px;
 		text-align: center;
 	}
 
 	.error-container h2 {
-		color: #721c24;
+		margin-top: 1rem;
+		color: black;
 		font-size: 24px;
 		margin-bottom: 8px;
 	}
