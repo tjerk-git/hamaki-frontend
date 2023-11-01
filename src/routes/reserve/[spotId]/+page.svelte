@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { page } from '$app/stores';
 	import { PUBLIC_BASE_URL } from '$env/static/public';
 	import toast, { Toaster } from 'svelte-french-toast';

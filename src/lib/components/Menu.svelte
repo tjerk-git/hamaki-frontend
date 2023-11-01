@@ -1,14 +1,17 @@
-<script lang="ts">
+<script>
 	export let calendarUrl = '';
+	import { getContext } from 'svelte';
+	import ThemeToggler from '$lib/components/ThemeToggler.svelte';
+	let theme = getContext('theme');
 </script>
 
 <nav>
 	<ul>
-		<li><a href="/about">About</a></li>
+		<li><a href="/about">What is Hamaki?</a></li>
 		{#if calendarUrl}
 			<li><a href="/forgot/{calendarUrl}">Forgot my appointment</a></li>
 		{/if}
-		<li><a href="#appstore">Download Hamaki for macOs</a></li>
+		<li><ThemeToggler {theme} /></li>
 	</ul>
 </nav>
 
@@ -22,20 +25,20 @@
 		margin: 0;
 		padding: 0;
 		display: flex;
-		justify-content: center;
+		justify-content: flex-end;
+		align-items: center;
 	}
 
 	nav li {
-		display: inline;
 		margin-right: 20px;
+		border-radius: 10px;
+		background-color: white;
+		color: black;
+		padding: 1rem;
 	}
 
 	nav a {
-		color: white;
+		color: black;
 		text-decoration: none;
-	}
-
-	nav a:hover {
-		text-decoration: underline;
 	}
 </style>

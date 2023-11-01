@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	export let visible = false;
 
 	export let message;

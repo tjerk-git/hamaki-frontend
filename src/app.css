@@ -45,11 +45,10 @@ h2 {
 body {
   width: 100%;
   margin: 0;
-  color:white;
-  background: linear-gradient(to bottom, #5228CD, #7856D5);
   height: 100%;
   min-height:100vh;
   font-family: Inter;
+  color:white;
 }
 
 main{

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import SpotComponent from '$lib/components/Spot.svelte';
 	import { getCorrectDate } from '$lib/helpers';
 	import Header from '$lib/components/Header.svelte';

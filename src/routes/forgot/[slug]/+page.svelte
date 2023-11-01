@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	export let form;
 
 	import toast, { Toaster } from 'svelte-french-toast';

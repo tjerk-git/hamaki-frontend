@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	export let name;
 </script>
 
@@ -87,7 +87,6 @@
 		padding: 20px;
 		display: flex;
 		justify-content: center;
-		background: linear-gradient(#6232e6, #491cc3);
 	}
 	.logo--box {
 		text-align: center;

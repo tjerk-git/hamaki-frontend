@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	export let data;
 	import Popup from '$lib/components/Popup.svelte';
 	import toast, { Toaster } from 'svelte-french-toast';

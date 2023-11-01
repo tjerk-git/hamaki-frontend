@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { FallingConfetti, ConfettiBurst, ConfettiCannon, random } from 'svelte-canvas-confetti';
 	import { browser } from '$app/environment';
 	import { tick } from 'svelte';

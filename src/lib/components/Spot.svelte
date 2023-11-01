@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { getCorrectDate } from '$lib/helpers';
 	import { selectedSpot } from '$lib/stores/stores';
 
