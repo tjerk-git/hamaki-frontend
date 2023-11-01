@@ -2,8 +2,6 @@
 	export let form;
 
 	import toast, { Toaster } from 'svelte-french-toast';
-	import Header from '$lib/components/Header.svelte';
-	import Menu from '$lib/components/Menu.svelte';
 	import { page } from '$app/stores';
 	import { goBack } from '$lib/helpers';
 

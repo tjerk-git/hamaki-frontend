@@ -75,7 +75,7 @@
 				</g>
 			</svg>
 		</a>
-		<h1 id="title" style="font-size: 40pt;">{$calendarName || 'Not found'}</h1>
+		<h1 id="title" style="font-size: 40pt;">{$calendarName}</h1>
 	</div>
 </header>
 

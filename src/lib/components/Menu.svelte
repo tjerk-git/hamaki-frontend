@@ -1,5 +1,4 @@
 <script>
-	export let calendarUrl = '';
 	import { getContext } from 'svelte';
 	import ThemeToggler from '$lib/components/ThemeToggler.svelte';
 	let theme = getContext('theme');

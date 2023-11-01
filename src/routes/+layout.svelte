@@ -6,7 +6,7 @@
 </script>
 
 <ThemeContext>
-	<Header name="Hamaki" />
+	<Header />
 	<Menu />
 
 	<slot />

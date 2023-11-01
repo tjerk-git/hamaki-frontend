@@ -2,8 +2,7 @@
 	import { page } from '$app/stores';
 	import { PUBLIC_BASE_URL } from '$env/static/public';
 	import toast, { Toaster } from 'svelte-french-toast';
-	import Header from '$lib/components/Header.svelte';
-	import { selectedSpot, calendarName } from '$lib/stores/stores';
+	import { selectedSpot } from '$lib/stores/stores';
 	import { getCorrectDate, getTimeZone, goBack } from '$lib/helpers';
 	import { onMount } from 'svelte';
 	import { FallingConfetti, ConfettiBurst, ConfettiCannon, random } from 'svelte-canvas-confetti';
@@ -48,7 +47,7 @@
 </script>
 
 <Toaster />
-<Header name={$calendarName} />
+
 <main>
 	{#if browser && confettiCannon}
 		{#each confettiQue as que}
