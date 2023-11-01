@@ -18,8 +18,8 @@ export async function load({ fetch, params }) {
 
         const calendar = await res.json();
 
-        if (calendar.name) {
-            calendarName.set(calendar.name);
+        if (calendar.calendar.name) {
+            calendarName.set(calendar.calendar.name);
         } else {
             calendarName.set(params.url);
         }

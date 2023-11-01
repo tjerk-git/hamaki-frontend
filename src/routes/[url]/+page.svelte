@@ -16,10 +16,10 @@
 {#await calendar}
 	Loading...
 {:then calendar}
-	{#if calendar.calendar.url}
-		<a href="/forgot/{calendar.calendar.url}">Forgot my appointment</a>
-	{/if}
+	{#if calendar.calendar.url}{/if}
 	<main>
+		<a id="forgot" href="/forgot/{calendar.calendar.url}">Forgot my appointment</a>
+
 		{#if calendar.calendar.description}
 			<br />
 			<p id="description">{calendar.calendar.description}</p>
@@ -52,5 +52,13 @@
 	}
 	h2 {
 		margin-bottom: 20px;
+	}
+
+	#forgot {
+		background-color: white;
+		color: black;
+		padding: 1rem;
+		border-radius: 10px;
+		text-decoration: none;
 	}
 </style>
