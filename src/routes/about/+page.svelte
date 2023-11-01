@@ -1,11 +1,6 @@
 <script>
-	import Menu from '$lib/components/Menu.svelte';
-	import Header from '$lib/components/Header.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
 </script>
-
-<Header name="Hamaki" />
-<Menu />
 
 <main>
 	<div class="container">

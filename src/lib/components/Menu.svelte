@@ -8,9 +8,6 @@
 <nav>
 	<ul>
 		<li><a href="/about">What is Hamaki?</a></li>
-		{#if calendarUrl}
-			<li><a href="/forgot/{calendarUrl}">Forgot my appointment</a></li>
-		{/if}
 		<li><ThemeToggler {theme} /></li>
 	</ul>
 </nav>

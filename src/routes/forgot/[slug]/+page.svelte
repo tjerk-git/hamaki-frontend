@@ -21,8 +21,6 @@
 
 <Toaster />
 
-<Header name="Hamaki" />
-<Menu />
 <main>
 	{#if form?.success}
 		<div class="notifications">

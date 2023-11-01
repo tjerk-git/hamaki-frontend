@@ -1,5 +1,5 @@
 <script>
-	export let name;
+	import { calendarName } from '$lib/stores/stores';
 </script>
 
 <header>
@@ -75,7 +75,7 @@
 				</g>
 			</svg>
 		</a>
-		<h1 id="title" style="font-size: 40pt;">{name}</h1>
+		<h1 id="title" style="font-size: 40pt;">{$calendarName || 'Not found'}</h1>
 	</div>
 </header>
 

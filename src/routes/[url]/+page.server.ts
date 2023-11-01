@@ -1,6 +1,7 @@
 
 import { API_BASE_URL } from '$env/static/private';
 import { error } from '@sveltejs/kit';
+import { calendarName } from '$lib/stores/stores';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }) {
@@ -16,6 +17,12 @@ export async function load({ fetch, params }) {
         }
 
         const calendar = await res.json();
+
+        if (calendar.name) {
+            calendarName.set(calendar.name);
+        } else {
+            calendarName.set(params.url);
+        }
 
         return { calendar };
     } catch (things) {
