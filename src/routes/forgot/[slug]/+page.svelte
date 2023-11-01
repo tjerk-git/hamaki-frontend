@@ -5,7 +5,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import Menu from '$lib/components/Menu.svelte';
 	import { page } from '$app/stores';
-	import { goBack } from '$lib/helpers.js';
+	import { goBack } from '$lib/helpers';
 
 	const { slug } = $page.params;
 
