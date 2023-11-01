@@ -18,12 +18,9 @@
 {:then calendar}
 	{#if calendar.calendar.url}{/if}
 	<main>
-		<a id="forgot" href="/forgot/{calendar.calendar.url}">Forgot my appointment</a>
-
 		{#if calendar.calendar.description}
-			<br />
+			<a id="forgot" href="/forgot/{calendar.calendar.url}">Forgot my appointment</a>
 			<p id="description">{calendar.calendar.description}</p>
-			<br /><br />
 		{/if}
 
 		{#if calendar.groupedSpots.length === 0}
@@ -52,6 +49,11 @@
 	}
 	h2 {
 		margin-bottom: 20px;
+	}
+
+	#description {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 
 	#forgot {
