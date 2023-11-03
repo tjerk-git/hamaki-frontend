@@ -3,7 +3,33 @@
 	import ThemeContext from '$lib/themeContext.svelte';
 	import Menu from '$lib/components/Menu.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import { SvelteSeo } from 'svelte-seo';
 </script>
+
+<svelte:head>
+	<SvelteSeo
+		title="Hamaki, booking made easy"
+		description="Pretty good booking on macOs"
+		canonical="https://www.hamaki.pro"
+		keywords="macOs, m1, apple, silicon, booking, easy, private, secure"
+		openGraph={{
+			title: 'Hamaki, personal appointments',
+			description: 'Pretty good booking on macOs',
+			image: '%sveltekit.assets%/hamaki.png',
+			url: 'https://www.hamaki.pro/',
+			type: 'website',
+			images: [
+				{
+					url: '%sveltekit.assets%/hamaki.png',
+					width: 800,
+					height: 600,
+					alt: 'Hamaki'
+				}
+			],
+			site_name: 'Hamaki'
+		}}
+	/>
+</svelte:head>
 
 <ThemeContext>
 	<Header />
