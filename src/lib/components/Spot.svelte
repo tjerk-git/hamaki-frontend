@@ -23,7 +23,7 @@
 		selectedSpot.set(spot);
 	};
 
-	const isReservable = (spot, minutes = 60) => {
+	const isReservable = (spot) => {
 		// if the spot is already reserved, return false
 		if (spot.isReserved) {
 			return false;
@@ -41,6 +41,11 @@
 		// remove negative value and round the diff
 		// create positive value from
 		const roundedDiff = Math.round(diff);
+		let minutes = 60;
+
+		if (calendar.allowReservationUpUntilMinutesBefore > 0) {
+			minutes = calendar.allowReservationUpUntilMinutesBefore;
+		}
 
 		if (roundedDiff <= minutes) {
 			return true;
