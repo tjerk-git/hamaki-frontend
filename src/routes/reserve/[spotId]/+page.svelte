@@ -197,7 +197,7 @@
 	textarea {
 		background: rgba(0, 0, 0, 30%);
 		color: #ffffff;
-		border: 1px solid #7958d6;
+		border: 1px solid -var(--theme-accent);
 		border-radius: 5px;
 		outline: none;
 		padding: 1.2rem;
@@ -221,10 +221,11 @@
 		margin-bottom: 10px;
 	}
 
-	input[type='email'] {
+	input[type='email'],
+	input[type='text'] {
 		background: rgba(0, 0, 0, 30%);
 		color: #ffffff;
-		border: 1px solid #7958d6;
+		border: 1px solid var(--theme-accent);
 		border-radius: 5px;
 		outline: none;
 		padding: 1.2rem;
@@ -236,8 +237,8 @@
 		display: block;
 	}
 	button {
-		background: #e7e4ee;
-		color: #7958d6;
+		background: white;
+		color: var(--theme-accent);
 		text-decoration: none;
 		text-align: left;
 		border-radius: 15px;

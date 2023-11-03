@@ -49,8 +49,8 @@
 	}
 
 	.outline {
-		border: 2px solid #7958d6;
-		color: #7958d6;
+		border: 2px solid var(--theme-accent);
+		color: var(--theme-accent);
 		background-color: transparent;
 		padding: 8px 16px;
 		border-radius: 4px;
@@ -60,7 +60,7 @@
 	}
 
 	.outline:hover {
-		background-color: #7958d6;
+		background-color: var(--theme-accent);
 		color: #fff;
 	}
 </style>

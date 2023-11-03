@@ -23,8 +23,14 @@
 <main>
 	{#if data.calendar}
 		{#if data.calendar.description}
-			<a id="forgot" href="/forgot/{data.calendar.url}">Forgot my appointment</a>
-			<p id="description">{data.calendar.description}</p>
+			<p id="description">
+				This is the calendar for: {data.calendar.name}
+
+				<span class="callout">
+					{data.calendar.description}
+				</span>
+				<a id="forgot" href="/forgot/{data.calendar.url}">😅 Forgot my appointment</a>
+			</p>
 		{/if}
 
 		{#if data.groupedSpots.length === 0}
@@ -56,13 +62,28 @@
 	#description {
 		margin-top: 2rem;
 		margin-bottom: 2rem;
-	}
-
-	#forgot {
 		background-color: white;
 		color: black;
 		padding: 1rem;
 		border-radius: 10px;
+	}
+
+	.callout {
+		background-color: rgb(234, 234, 234);
+		color: black;
+		padding: 1rem;
+		border-radius: 5px;
+		display: block;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	#forgot {
+		background-color: var(--theme-accent);
+		color: var(--theme-text);
+		padding: 1rem;
+		border-radius: 10px;
 		text-decoration: none;
+		display: inline-block;
 	}
 </style>

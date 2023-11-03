@@ -84,7 +84,7 @@
 			>
 				<title>assets/icons/arrow</title>
 				<g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-					<g id="assets/icons/arrow" fill="#7958D6">
+					<g id="assets/icons/arrow" fill="grey">
 						<polygon
 							transform="translate(11.600922, 8.000000) rotate(-180.000000) translate(-11.600922, -8.000000) "
 							points="8.00278293 3.55271368e-15 1.5235185 6.47975554 1.52046273 6.4766452 0 7.99710793 0.00311033504 8.00021827 0 8.00327404 1.52046273 9.52373677 1.5235185 9.520681 8.00294663 16 9.52340936 14.4795373 4.11933864 9.07546655 23.2018444 9.07546655 23.2018444 6.92486085 4.11933864 6.92486085 9.52340936 1.52029903 8.00305577 3.55271368e-15"
@@ -100,7 +100,7 @@
 	a {
 		background: #e7e4ee;
 		padding: 1rem;
-		color: #7958d6;
+		color: var(--theme-accent);
 		text-decoration: none;
 		border-radius: 15px;
 		cursor: pointer;
@@ -125,7 +125,7 @@
 	}
 
 	svg {
-		fill: #4d1fc8;
+		fill: var(--theme-accent);
 		margin-right: 20px;
 	}
 	.reserved {

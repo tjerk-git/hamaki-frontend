@@ -85,7 +85,7 @@
 	input[type='email'] {
 		background: rgba(0, 0, 0, 30%);
 		color: #ffffff;
-		border: 1px solid #7958d6;
+		border: 1px solid var(--theme-accent);
 		border-radius: 5px;
 		outline: none;
 		padding: 1.2rem;
@@ -98,7 +98,7 @@
 	}
 	button {
 		background: #e7e4ee;
-		color: #7958d6;
+		color: var(--theme-accent);
 		text-decoration: none;
 		text-align: left;
 		border-radius: 15px;

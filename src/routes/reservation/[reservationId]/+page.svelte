@@ -148,7 +148,7 @@
 
 <style>
 	.outline {
-		border: 2px solid #7958d6;
+		border: 2px solid var(--theme-accent);
 		color: white;
 		background-color: transparent;
 		padding: 1.2rem;

@@ -23,6 +23,24 @@
 		color: var(--theme-text);
 	}
 
+	:global(h1) {
+		--font-size: 40pt;
+		--typography-spacing-vertical: 3rem;
+		color: var(--theme-text);
+		font-family: ThunderBold;
+	}
+
+	:global(h2) {
+		--font-size: 1.75rem;
+		--typography-spacing-vertical: 2.625rem;
+		color: var(--theme-text);
+		font-family: Inter;
+	}
+
+	:global(svg) {
+		fill: var(--theme-accent);
+	}
+
 	/* color:white;
   background: linear-gradient(to bottom, #5228CD, #7856D5);	 */
 </style>
