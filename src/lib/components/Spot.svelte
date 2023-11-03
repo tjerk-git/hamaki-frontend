@@ -31,12 +31,18 @@
 		const currentDate = new Date();
 
 		// get the difference between currentDate and spotDate in number of minutes
-		const diff = (currentDate - spotDate) / 60000;
+		const diff = (spotDate - currentDate) / 60000;
+
+		// remove negative value and round the diff
+		// create positive value from
+		const roundedDiff = Math.round(diff);
+
+		console.log('roundedDiff', roundedDiff, minutes);
 
 		if (diff <= minutes) {
-			return false;
-		} else {
 			return true;
+		} else {
+			return false;
 		}
 	};
 </script>
@@ -44,7 +50,7 @@
 <a
 	href={getUrl(spot)}
 	on:click={saveSpot(spot)}
-	class:reserved={spot.isReserved || isReservable(spot, 30)}
+	class:reserved={spot.isReserved || isReservable(spot, 60)}
 >
 	{#if spot.isReserved}
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
