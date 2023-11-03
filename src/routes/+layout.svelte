@@ -15,12 +15,11 @@
 		openGraph={{
 			title: 'Hamaki, personal appointments',
 			description: 'Pretty good booking on macOs',
-			image: 'hamaki.png',
 			url: 'https://www.hamaki.pro/',
 			type: 'website',
 			images: [
 				{
-					url: 'hamaki.png',
+					url: 'https://www.hamaki.pro/hamaki.png',
 					width: 800,
 					height: 600,
 					alt: 'Hamaki'
