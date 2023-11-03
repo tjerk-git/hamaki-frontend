@@ -3,7 +3,7 @@
 	import ThemeContext from '$lib/themeContext.svelte';
 	import Menu from '$lib/components/Menu.svelte';
 	import Header from '$lib/components/Header.svelte';
-	import { SvelteSeo } from 'svelte-seo';
+	import SvelteSeo from 'svelte-seo';
 </script>
 
 <svelte:head>
