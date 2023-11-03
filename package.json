@@ -25,7 +25,6 @@
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"svelte-time": "^0.7.1",
-		"typescript": "^5.0.0",
 		"vite": "^4.3.0",
 		"vitest": "^0.25.3"
 	},
@@ -33,7 +32,6 @@
 	"dependencies": {
 		"dayjs": "^1.11.7",
 		"get-user-locale": "^2.2.1",
-		"gsap": "^3.11.5",
 		"svelte-canvas-confetti": "^0.6.0",
 		"svelte-confetti": "^1.2.2",
 		"svelte-french-toast": "^1.0.4-beta.0"

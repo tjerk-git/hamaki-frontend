@@ -1,5 +1,4 @@
 import { API_BASE_URL } from '$env/static/private';
-import type { Actions } from './$types';
 
 export const actions = {
     default: async ({ request, params }) => {
@@ -42,5 +41,5 @@ export const actions = {
             return { success: false, data: error };
         }
     },
-} satisfies Actions;
+}
 

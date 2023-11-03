@@ -81,7 +81,7 @@
 		margin-bottom: 20px;
 		margin-top: 20px;
 	}
-	input[type='text'],
+
 	input[type='email'] {
 		background: rgba(0, 0, 0, 30%);
 		color: #ffffff;

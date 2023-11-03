@@ -1,7 +1,6 @@
 import { API_BASE_URL } from '$env/static/private';
-import type { Actions } from '../$types';
 
-export const actions: Actions = {
+export const actions = {
     default: async ({ request, params }) => {
         const data = await request.formData();
         const email = data.get('email');
@@ -24,7 +23,7 @@ export const actions: Actions = {
                 const responseData = await response.json();
                 return { success: true, data: JSON.stringify(responseData) };
             }
-        } catch (error: any) {
+        } catch (error) {
             return { success: true, data: JSON.stringify(error.message) };
         }
     },

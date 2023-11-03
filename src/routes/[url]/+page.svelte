@@ -3,6 +3,7 @@
 	import { getCorrectDate } from '$lib/helpers';
 	import { onMount } from 'svelte';
 	import { calendarName } from '$lib/stores/stores';
+	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
 
 	export let data;
 
@@ -35,12 +36,12 @@
 
 			{#each group.spots as spot}
 				<div class="groupedSpots">
-					<SpotComponent {spot} {data} />
+					<SpotComponent {spot} calendar={data.calendar} />
 				</div>
 			{/each}
 		{/each}
 	{:else}
-		<h1>This calendar isn't loading somehow..</h1>
+		<ErrorMessage message="No calendar can be found..." />
 	{/if}
 </main>
 

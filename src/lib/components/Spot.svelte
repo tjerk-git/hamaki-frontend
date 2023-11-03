@@ -1,6 +1,4 @@
 <script>
-	// @ts-nocheck
-
 	import { getCorrectDate } from '$lib/helpers';
 	import { selectedSpot } from '$lib/stores/stores';
 
@@ -25,14 +23,20 @@
 		selectedSpot.set(spot);
 	};
 
-	const isReservable = (spot, hours) => {
-		const now = new Date();
-		const hoursLater = new Date(now.getTime() + hours * 60 * 60 * 1000);
+	const isReservable = (spot, minutes) => {
+		// get the current date and time for the spot
+		const spotDate = new Date(spot.startDate);
 
-		if (spot.startDate > hoursLater) {
-			return true;
-		} else {
+		// get the current date and time
+		const currentDate = new Date();
+
+		// get the difference between currentDate and spotDate in number of minutes
+		const diff = (currentDate - spotDate) / 60000;
+
+		if (diff <= minutes) {
 			return false;
+		} else {
+			return true;
 		}
 	};
 </script>

@@ -110,8 +110,7 @@
 			</a>
 
 			<span class="textInCenter">or.....</span>
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<div class="box" on:click={makeConfettiCannon}>
+			<div class="box" on:click={makeConfettiCannon} on:keydown={makeConfettiCannon}>
 				<button>MORE CONFETTI</button>
 			</div>
 		{/if}
@@ -222,7 +221,6 @@
 		margin-bottom: 10px;
 	}
 
-	input[type='text'],
 	input[type='email'] {
 		background: rgba(0, 0, 0, 30%);
 		color: #ffffff;
@@ -292,10 +290,6 @@
 		width: 100%;
 		border-radius: 0.5rem;
 		user-select: none;
-	}
-
-	.mover {
-		position: absolute;
 	}
 
 	span {

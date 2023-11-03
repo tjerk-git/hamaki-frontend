@@ -4,8 +4,6 @@
 </script>
 
 <main>
-	<h1>{$page.status}</h1>
-
 	{#if $page.error.message}
 		<ErrorMessage message={$page.error.message} />
 	{:else}

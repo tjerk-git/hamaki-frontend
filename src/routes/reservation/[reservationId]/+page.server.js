@@ -1,7 +1,6 @@
 import { API_BASE_URL } from '$env/static/private';
 import { API_VERSION } from '$env/static/private';
 
-/** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }) {
     const url = `${API_BASE_URL}/${API_VERSION}/reservation/${params.reservationId}`;
 

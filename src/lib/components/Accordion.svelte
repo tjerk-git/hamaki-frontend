@@ -41,10 +41,6 @@
 		background: rgb(229, 229, 229);
 	}
 
-	.item.active {
-		background-color: #d3d3d3;
-	}
-
 	.content {
 		padding: 1.5rem;
 		background: white;
