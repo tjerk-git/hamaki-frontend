@@ -12,7 +12,7 @@
 	export let calendar;
 
 	const getUrl = (spot) => {
-		if (spot.isReserved) {
+		if (isReservable(spot)) {
 			return '';
 		} else {
 			return `/reserve/${spot.spotId}`;
@@ -23,7 +23,12 @@
 		selectedSpot.set(spot);
 	};
 
-	const isReservable = (spot, minutes) => {
+	const isReservable = (spot, minutes = 60) => {
+		// if the spot is already reserved, return false
+		if (spot.isReserved) {
+			return false;
+		}
+
 		// get the current date and time for the spot
 		const spotDate = new Date(spot.startDate);
 
@@ -37,9 +42,7 @@
 		// create positive value from
 		const roundedDiff = Math.round(diff);
 
-		console.log('roundedDiff', roundedDiff, minutes);
-
-		if (diff <= minutes) {
+		if (roundedDiff <= minutes) {
 			return true;
 		} else {
 			return false;
@@ -47,12 +50,8 @@
 	};
 </script>
 
-<a
-	href={getUrl(spot)}
-	on:click={saveSpot(spot)}
-	class:reserved={spot.isReserved || isReservable(spot, 60)}
->
-	{#if spot.isReserved}
+<a href={getUrl(spot)} on:click={saveSpot(spot)} class:reserved={isReservable(spot)}>
+	{#if isReservable(spot)}
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			><path
 				d="M14 9v2h-4v-2c0-1.104.897-2 2-2s2 .896 2 2zm10 3c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12zm-8-1h-1v-2c0-1.656-1.343-3-3-3s-3 1.344-3 3v2h-1v6h8v-6z"
@@ -72,7 +71,7 @@
 
 	{#if spot.location} <span class="location">{spot.location}</span>{/if}
 
-	{#if !spot.isReserved}
+	{#if !isReservable(spot)}
 		<span class="take-spot">
 			<!--?xml version="1.0" encoding="UTF-8"?-->
 			<svg
