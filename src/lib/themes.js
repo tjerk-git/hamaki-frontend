@@ -48,4 +48,16 @@ export const themes = [
       headerTo: 'rgba(236, 93, 93, 1) 100.2%',
     },
   },
+  {
+    name: 'Mike Money',
+    icon: '💰',
+    colors: {
+      text: '#FFF',
+      accent: '#EA5874',
+      backgroundFrom: '#EA5874',
+      backgroundTo: '#3414A3',
+      headerFrom: '#3414A3',
+      headerTo: '#EA5874',
+    },
+  },
 ]
