@@ -12,7 +12,7 @@
 	export let calendar;
 
 	const getUrl = (spot) => {
-		if (!isReserved(spot)) {
+		if (isReserved(spot)) {
 			return '';
 		} else {
 			return `/reserve/${spot.spotId}`;
