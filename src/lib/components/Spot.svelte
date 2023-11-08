@@ -76,7 +76,7 @@
 
 	{#if spot.location} <span class="location">{spot.location}</span>{/if}
 
-	{#if isReserved(spot)}
+	{#if !isReserved(spot)}
 		<span class="take-spot">
 			<!--?xml version="1.0" encoding="UTF-8"?-->
 			<svg
