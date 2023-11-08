@@ -26,7 +26,7 @@
 	const isReservable = (spot) => {
 		// if the spot is already reserved, return false
 		if (spot.isReserved) {
-			return false;
+			return true;
 		}
 
 		// get the current date and time for the spot
@@ -48,9 +48,9 @@
 		}
 
 		if (roundedDiff <= minutes) {
-			return true;
-		} else {
 			return false;
+		} else {
+			return true;
 		}
 	};
 </script>
