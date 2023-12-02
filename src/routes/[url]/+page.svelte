@@ -2,7 +2,7 @@
 	import SpotComponent from '$lib/components/Spot.svelte';
 	import { getCorrectDate } from '$lib/helpers';
 	import { onMount } from 'svelte';
-	import { calendarName } from '$lib/stores/stores';
+	import { calendarName, selectedWaitingListDay } from '$lib/stores/stores';
 	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
 
 	export let data;
@@ -18,6 +18,10 @@
 			calendarName.set(data.calendar.name);
 		}
 	});
+
+	function setWaitingListDay(day) {
+		selectedWaitingListDay.set(day);
+	}
 </script>
 
 <main>
@@ -45,6 +49,14 @@
 					<SpotComponent {spot} calendar={data.calendar} />
 				</div>
 			{/each}
+
+			{#if group.spots.every((spot) => spot.isReserved)}
+				<a
+					href="/waitinglist/{data.calendar.url}"
+					on:click={setWaitingListDay(group.day)}
+					id="waitinglist">Put me on the waitinglist 📋</a
+				>
+			{/if}
 		{/each}
 	{:else}
 		<ErrorMessage message="No calendar can be found..." />
@@ -82,6 +94,16 @@
 		background-color: var(--theme-accent);
 		color: var(--theme-text);
 		padding: 1rem;
+		border-radius: 10px;
+		text-decoration: none;
+		display: inline-block;
+	}
+
+	#waitinglist {
+		background-color: white;
+		color: black;
+		padding: 1rem;
+		margin-bottom: 1rem;
 		border-radius: 10px;
 		text-decoration: none;
 		display: inline-block;
