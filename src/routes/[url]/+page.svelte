@@ -20,7 +20,8 @@
 	});
 
 	function setWaitingListDay(day) {
-		selectedWaitingListDay.set(day);
+		const formattedDate = getCorrectDate(day, dateOptions);
+		selectedWaitingListDay.set(formattedDate);
 	}
 </script>
 
