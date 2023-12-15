@@ -16,7 +16,7 @@ export const actions = {
       comment: comment,
       timezone: timezone,
       date: date,
-      calendarId: params.slug,
+      calendarURL: params.slug
     };
 
     try {
