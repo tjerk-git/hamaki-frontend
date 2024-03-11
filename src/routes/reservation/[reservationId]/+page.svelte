@@ -3,6 +3,7 @@
 	import Popup from '$lib/components/Popup.svelte';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import { PUBLIC_BASE_URL } from '$env/static/public';
+	import { getCorrectDate, getTimeZone, goBack } from '$lib/helpers';
 
 	let popupVisible = false;
 	let message = 'Are you sure you want to cancel the appointment?';
@@ -40,6 +41,11 @@
 <main>
 	{#if data.reservation}
 		<h2>Hey there!</h2>
+
+		You have an appointment at:<time>{getCorrectDate(data.reservation.startDate, dateOptions)}</time
+		>
+		-
+		<time>{getCorrectDate(data.reservation.endDate, dateOptions)}</time>
 		<br /><br />
 		<p>You can download your appointment here below, in case you forgot.</p>
 		<p>Or you could cancel your appointment.</p>

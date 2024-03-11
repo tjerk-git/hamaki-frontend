@@ -1,13 +1,9 @@
 <script>
-	import { getContext } from 'svelte';
-	import ThemeToggler from '$lib/components/ThemeToggler.svelte';
-	let theme = getContext('theme');
 </script>
 
 <nav>
 	<ul>
 		<li><a href="/about">What is Hamaki?</a></li>
-		<li><ThemeToggler {theme} /></li>
 	</ul>
 </nav>
 

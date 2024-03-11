@@ -63,12 +63,21 @@
 	<div class="reserve_container">
 		{#if isObjectEmpty($selectedSpot)}
 			<h1>Spot has been reserved</h1>
-			<br /><br />
 		{/if}
 
 		{#if form?.success}
 			<!-- this message is ephemeral; it exists because the page was rendered in
            response to a form submission. it will vanish if the user reloads -->
+
+			{#if $selectedSpot.startDate}
+				claimed a spot for:
+				<time>{getCorrectDate($selectedSpot.startDate, dateOptions)}</time> -
+				<time>{getCorrectDate($selectedSpot.endDate, dateOptions)}</time>
+			{/if}
+
+			{#if $selectedSpot.location}
+				at location: {$selectedSpot.location}
+			{/if}
 
 			<FallingConfetti />
 
