@@ -14,11 +14,12 @@
 
 	nav ul {
 		list-style-type: none;
-		margin: 0;
+		margin: 0 auto;
 		padding: 0;
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
+		max-width: 1145px;
 	}
 
 	nav li {

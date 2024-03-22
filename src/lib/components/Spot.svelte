@@ -41,7 +41,7 @@
 		// remove negative value and round the diff
 		// create positive value from
 		const roundedDiff = Math.round(diff);
-		let minutes = 60;
+		let minutes = 0;
 
 		if (calendar.allowReservationUpUntilMinutesBefore > 0) {
 			minutes = calendar.allowReservationUpUntilMinutesBefore;

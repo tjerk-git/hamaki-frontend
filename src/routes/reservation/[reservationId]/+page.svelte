@@ -12,6 +12,14 @@
 		popupVisible = false;
 	};
 
+	const dateOptions = {
+		weekday: 'long',
+		month: 'long',
+		day: 'numeric',
+		hour: 'numeric',
+		minutes: 'numeric'
+	};
+
 	const cancel = () => {
 		cancelReservation(data.reservationId);
 
@@ -19,6 +27,11 @@
 		setTimeout(() => {
 			throw Error('404');
 		}, 2000);
+	};
+
+	const addToCalendar = (base, url) => {
+		// redirect to url
+		window.location.href = base + url;
 	};
 
 	async function cancelReservation(reservationId) {
@@ -40,38 +53,29 @@
 
 <main>
 	{#if data.reservation}
-		<h2>Hey there!</h2>
+		<Popup {message} onDismiss={dismiss} onAccept={cancel} visible={popupVisible} />
+		<div class="card">
+			<h2>Hey there!</h2>
+			<h3>{data.reservation.calendar.name}</h3>
 
-		You have an appointment at:<time>{getCorrectDate(data.reservation.startDate, dateOptions)}</time
-		>
-		-
-		<time>{getCorrectDate(data.reservation.endDate, dateOptions)}</time>
-		<br /><br />
-		<p>You can download your appointment here below, in case you forgot.</p>
-		<p>Or you could cancel your appointment.</p>
-		<br /><br />
+			{#if data.reservation.spot.location}
+				at location {data.reservation.spot.location.name}
+			{/if}
 
-		<a
-			href="{PUBLIC_BASE_URL}{data.reservation.icsURL}"
-			target="_blank"
-			style="text-decoration: none;"
-		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="24"
-				height="24"
-				viewBox="0 0 24 24"
-				style="vertical-align: middle;"
-			>
-				<path
-					d="M17 3v-2c0-.552.447-1 1-1s1 .448 1 1v2c0 .552-.447 1-1 1s-1-.448-1-1zm-12 1c.553 0 1-.448 1-1v-2c0-.552-.447-1-1-1-.553 0-1 .448-1 1v2c0 .552.447 1 1 1zm13 13v-3h-1v4h3v-1h-2zm-5 .5c0 2.481 2.019 4.5 4.5 4.5s4.5-2.019 4.5-4.5-2.019-4.5-4.5-4.5-4.5 2.019-4.5 4.5zm11 0c0 3.59-2.91 6.5-6.5 6.5s-6.5-2.91-6.5-6.5 2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5zm-14.237 3.5h-7.763v-13h19v1.763c.727.33 1.399.757 2 1.268v-9.031h-3v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-9v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-3v21h11.031c-.511-.601-.938-1.273-1.268-2z"
-					fill="#FFFFFF"
-				/>
-			</svg>
-			<span style="vertical-align: middle; margin-left: 4px;">Add to calendar</span>
-		</a>
+			You have an appointment at:<br /> <time>{data.reservation.bestGuessStartDate}</time>
+			-
+			<time> {data.reservation.bestGuessEndDate}</time>
+			<br /><br />
+			<p>You can download your appointment here below, in case you forgot.</p>
+			<p>Or you could cancel your appointment.</p>
+			<br /><br />
 
-		<button class="outline" on:click={showPopup}>Cancel this appointment </button>
+			<button class="outline" on:click={addToCalendar(PUBLIC_BASE_URL, data.reservation.icsURL)}>
+				Add to calendar
+			</button>
+
+			<button class="outline" on:click={showPopup}>Cancel this appointment </button>
+		</div>
 	{:else}
 		<h2>Whoops, there is nothing here... maybe this meeting was cancelled?</h2>
 		<a href="/">
@@ -146,26 +150,35 @@
 			</svg>
 		</a>
 	{/if}
-	<Popup {message} onDismiss={dismiss} onAccept={cancel} visible={popupVisible} />
 </main>
 
 <style>
 	.outline {
 		border: 2px solid var(--theme-accent);
-		color: white;
+		color: var(--theme-accent);
 		background-color: transparent;
-		padding: 1.2rem;
-		border-radius: 10px;
+		padding: 8px 16px;
+		border-radius: 4px;
 		cursor: pointer;
 		transition: all 0.3s ease;
 		margin-right: 10px;
-		margin-top: 10px;
-		text-decoration: none;
-		font-size: 1.2rem;
 	}
 
 	.outline:hover {
-		background-color: #b49bf9;
+		background-color: var(--theme-accent);
 		color: #fff;
+	}
+
+	.card {
+		background-color: #f9f9f9;
+		padding: 20px;
+		border-radius: 10px;
+		margin-top: 20px;
+		color: black;
+	}
+
+	.card h2 {
+		color: black;
+		margin-bottom: 5px;
 	}
 </style>

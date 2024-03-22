@@ -15,6 +15,7 @@ export async function load({ fetch, params }) {
             throw Error("404");
         }
 
+        console.log(reservation);
         return { reservation, reservationId };
     } catch (error) {
         return reservation;
