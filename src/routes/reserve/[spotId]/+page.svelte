@@ -69,9 +69,9 @@
 				at location: {$selectedSpot.location}
 			{/if}
 
-			{#if browser || isVisible}
+			{#if isVisible}
 				<div class="confetti_window">
-					<div use:confetti={{ particleCount: 1000 }} />
+					<div use:confetti={{ particleCount: 600, particleShape: 'mix', force: 1 }} />
 				</div>
 			{/if}
 
@@ -98,7 +98,15 @@
 
 			<span class="textInCenter">or.....</span>
 			<div class="box" on:click={handleClick}>
-				<button>MORE CONFETTI</button>
+				<button
+					on:click={async () => {
+						isVisible = false;
+						await tick();
+						isVisible = true;
+					}}
+				>
+					More confetti!!!🎉
+				</button>
 			</div>
 		{/if}
 
@@ -181,6 +189,9 @@
 		place-items: center;
 		user-select: none;
 		color: grey;
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 	.textInCenter {
 		text-align: center;
