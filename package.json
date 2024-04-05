@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@neoconfetti/svelte": "^2.2.1",
 		"dayjs": "^1.11.7",
 		"get-user-locale": "^2.2.1",
 		"svelte-canvas-confetti": "^0.6.0",

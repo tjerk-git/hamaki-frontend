@@ -5,8 +5,21 @@
 	import { selectedSpot } from '$lib/stores/stores';
 	import { getCorrectDate, getTimeZone, goBack } from '$lib/helpers';
 	import { onMount } from 'svelte';
-	import { FallingConfetti, ConfettiBurst, ConfettiCannon, random } from 'svelte-canvas-confetti';
 	import { browser } from '$app/environment';
+	import { confetti } from '@neoconfetti/svelte';
+	import { tick } from 'svelte';
+
+	let x, y;
+	let isVisible = false;
+
+	const handleClick = async (e) => {
+		x = e.clientX;
+		y = e.clientY;
+
+		isVisible = false;
+		await tick();
+		isVisible = true;
+	};
 
 	export let form;
 
@@ -17,14 +30,6 @@
 	};
 
 	const { spotId } = $page.params;
-
-	let confettiCannon = false;
-	let confettiQue = ['one'];
-
-	const makeConfettiCannon = async () => {
-		confettiCannon = !confettiCannon;
-		confettiQue.push('more');
-	};
 
 	$: {
 		if (form?.success) {
@@ -49,17 +54,6 @@
 <Toaster />
 
 <main>
-	{#if browser && confettiCannon}
-		{#each confettiQue as que}
-			<ConfettiCannon
-				origin={[window.innerWidth / 2, window.innerHeight]}
-				angle={Math.floor(Math.random() * (360 - 0 + 1) + 0)}
-				spread={Math.floor(Math.random() * (0 - 100 + 1) + 0)}
-				force={Math.floor(Math.random() * (0 - 100 + 1) + 0)}
-			/>
-		{/each}
-	{/if}
-
 	<div class="reserve_container">
 		{#if isObjectEmpty($selectedSpot)}
 			<h1>Spot has been reserved</h1>
@@ -79,22 +73,12 @@
 				at location: {$selectedSpot.location}
 			{/if}
 
-			<FallingConfetti />
-
 			{#if browser}
-				<ConfettiBurst
-					origin={[
-						random((window.innerWidth / 4) * 3, window.innerWidth / 4),
-						random((window.innerHeight / 4) * 3, window.innerHeight / 4)
-					]}
-				/>
+				<div use:confetti={{ particleCount: 200 }} />
+			{/if}
 
-				<ConfettiCannon
-					origin={[window.innerWidth / 2, window.innerHeight]}
-					angle={-90}
-					spread={35}
-					force={35}
-				/>
+			{#if isVisible}
+				<ConfettiExplosion --x="{x}px" --y="{y}px" />
 			{/if}
 
 			<a
@@ -119,7 +103,7 @@
 			</a>
 
 			<span class="textInCenter">or.....</span>
-			<div class="box" on:click={makeConfettiCannon} on:keydown={makeConfettiCannon}>
+			<div class="box" on:click={handleClick}>
 				<button>MORE CONFETTI</button>
 			</div>
 		{/if}
