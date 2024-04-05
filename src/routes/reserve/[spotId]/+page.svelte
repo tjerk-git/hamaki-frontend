@@ -69,9 +69,13 @@
 				at location: {$selectedSpot.location}
 			{/if}
 
+			<div class="confetti_window">
+				<div use:confetti={{ particleCount: 600, particleShape: 'mix', force: 0.3 }} />
+			</div>
+
 			{#if isVisible}
 				<div class="confetti_window">
-					<div use:confetti={{ particleCount: 600, particleShape: 'mix', force: 1 }} />
+					<div use:confetti={{ particleCount: 200, particleShape: 'mix', force: 1 }} />
 				</div>
 			{/if}
 
