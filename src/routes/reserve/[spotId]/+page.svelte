@@ -7,6 +7,7 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { confetti } from '@neoconfetti/svelte';
+	import { tick } from 'svelte';
 
 	let isVisible = false;
 
@@ -18,7 +19,9 @@
 		hour12: false
 	};
 
-	const handleClick = () => {
+	const handleClick = async (e) => {
+		isVisible = false;
+		await tick();
 		isVisible = true;
 	};
 
@@ -67,7 +70,9 @@
 			{/if}
 
 			{#if browser || isVisible}
-				<div use:confetti={{ particleCount: 200 }} />
+				<div class="confetti_window">
+					<div use:confetti={{ particleCount: 1000 }} />
+				</div>
 			{/if}
 
 			<a
@@ -169,6 +174,14 @@
 </main>
 
 <style>
+	.confetti_window {
+		width: 100vw;
+		height: 100vh;
+		display: grid;
+		place-items: center;
+		user-select: none;
+		color: grey;
+	}
 	.textInCenter {
 		text-align: center;
 		margin-top: 20px;
