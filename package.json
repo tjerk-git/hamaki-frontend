@@ -36,6 +36,7 @@
 		"get-user-locale": "^2.2.1",
 		"svelte-canvas-confetti": "^0.6.0",
 		"svelte-confetti": "^1.2.2",
+		"svelte-confetti-explosion": "^0.4.0",
 		"svelte-french-toast": "^1.0.4-beta.0"
 	}
 }

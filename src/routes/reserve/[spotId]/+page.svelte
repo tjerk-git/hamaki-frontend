@@ -7,19 +7,8 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { confetti } from '@neoconfetti/svelte';
-	import { tick } from 'svelte';
 
-	let x, y;
 	let isVisible = false;
-
-	const handleClick = async (e) => {
-		x = e.clientX;
-		y = e.clientY;
-
-		isVisible = false;
-		await tick();
-		isVisible = true;
-	};
 
 	export let form;
 
@@ -27,6 +16,10 @@
 		hour: 'numeric',
 		minute: 'numeric',
 		hour12: false
+	};
+
+	const handleClick = () => {
+		isVisible = true;
 	};
 
 	const { spotId } = $page.params;
@@ -73,12 +66,8 @@
 				at location: {$selectedSpot.location}
 			{/if}
 
-			{#if browser}
+			{#if browser || isVisible}
 				<div use:confetti={{ particleCount: 200 }} />
-			{/if}
-
-			{#if isVisible}
-				<ConfettiExplosion --x="{x}px" --y="{y}px" />
 			{/if}
 
 			<a
