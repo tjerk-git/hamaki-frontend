@@ -10,6 +10,9 @@
 	import { tick } from 'svelte';
 
 	let isVisible = false;
+	// sensible default
+	let possibleEmail = '';
+	let possibleName = '';
 
 	export let form;
 
@@ -37,10 +40,6 @@
 	}
 
 	onMount(() => {
-		// sensible default
-		let possibleEmail = '';
-		let possibleName = '';
-
 		let timezone = 'Europe/Amsterdam';
 		timezone = getTimeZone();
 
