@@ -6,12 +6,20 @@
 	import { getCorrectDate, getTimeZone, goBack } from '$lib/helpers';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import confetti from 'canvas-confetti';
+
+	let confetti;
 
 	let possibleEmail = '';
 	let possibleName = '';
 
 	export let form;
+
+	onMount(async () => {
+		if (browser) {
+			const module = await import('canvas-confetti');
+			confetti = module.default;
+		}
+	});
 
 	const dateOptions = {
 		hour: 'numeric',
@@ -20,11 +28,13 @@
 	};
 
 	function fireConfetti() {
-		confetti({
-			particleCount: 100,
-			spread: 70,
-			origin: { y: 0.6 }
-		});
+		if (confetti) {
+			confetti({
+				particleCount: 100,
+				spread: 70,
+				origin: { y: 0.6 }
+			});
+		}
 	}
 
 	const saveEmailInput = (e) => {
