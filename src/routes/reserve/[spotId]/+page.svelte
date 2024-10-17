@@ -6,11 +6,8 @@
 	import { getCorrectDate, getTimeZone, goBack } from '$lib/helpers';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { confetti } from '@neoconfetti/svelte';
-	import { tick } from 'svelte';
+	import confetti from 'canvas-confetti';
 
-	let isVisible = false;
-	// sensible default
 	let possibleEmail = '';
 	let possibleName = '';
 
@@ -22,11 +19,13 @@
 		hour12: false
 	};
 
-	const handleClick = async (e) => {
-		isVisible = false;
-		await tick();
-		isVisible = true;
-	};
+	function fireConfetti() {
+		confetti({
+			particleCount: 100,
+			spread: 70,
+			origin: { y: 0.6 }
+		});
+	}
 
 	const saveEmailInput = (e) => {
 		possibleEmail = e.target.value;
@@ -53,6 +52,8 @@
 	$: {
 		if (form?.success) {
 			toast.success('Spot claimed!');
+
+			fireConfetti();
 		}
 		if (form?.success === false) {
 			toast.error('Spot has been claimed!');
@@ -107,32 +108,11 @@
 				at location: {$selectedSpot.location}
 			{/if}
 
-			<div class="confetti_window">
-				<div use:confetti={{ particleCount: 600, particleShape: 'mix', force: 0.3 }} />
-			</div>
-
-			{#if isVisible}
-				<div class="confetti_window">
-					<div use:confetti={{ particleCount: 200, particleShape: 'mix', force: 1 }} />
-				</div>
-			{/if}
-
 			<a href="{PUBLIC_BASE_URL}{form?.data.reservation?.icsURL}" target="_blank" class="outline">
 				<span style="vertical-align: middle; margin-left: 4px;">Add to your own calendar</span>
 			</a>
 
-			<span class="textInCenter">or.....</span>
-			<div class="box" on:click={handleClick}>
-				<button
-					on:click={async () => {
-						isVisible = false;
-						await tick();
-						isVisible = true;
-					}}
-				>
-					More confetti!!!🎉
-				</button>
-			</div>
+			<button on:click={fireConfetti}> 🎉 CONFETTI! </button>
 		{/if}
 
 		{#if form?.success === false}
@@ -221,24 +201,6 @@
 </main>
 
 <style>
-	.confetti_window {
-		width: 100vw;
-		height: 100vh;
-		display: grid;
-		place-items: center;
-		user-select: none;
-		color: grey;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-	.textInCenter {
-		text-align: center;
-		margin-top: 20px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
 	textarea {
 		background: rgba(0, 0, 0, 30%);
 		color: #ffffff;
