@@ -16,8 +16,6 @@ export const actions = {
             spotId: params.spotId,
         };
 
-        // save form date in local storage
-        localStorage.setItem('formData', JSON.stringify(formData));
 
         try {
             const response = await fetch(`${API_BASE_URL}/api/v1/spots/reserve`, {

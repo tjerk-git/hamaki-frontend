@@ -28,6 +28,26 @@
 		isVisible = true;
 	};
 
+	const saveEmailInput = (e) => {
+		possibleEmail = e.target.value;
+		if (browser) {
+			localStorage.setItem(
+				'formData',
+				JSON.stringify({ email: possibleEmail, name: possibleName })
+			);
+		}
+	};
+
+	const saveNameInput = (e) => {
+		possibleName = e.target.value;
+		if (browser) {
+			localStorage.setItem(
+				'formData',
+				JSON.stringify({ email: possibleEmail, name: possibleName })
+			);
+		}
+	};
+
 	const { spotId } = $page.params;
 
 	$: {
@@ -170,10 +190,24 @@
 
 			<form method="POST" action="/reserve/{spotId}">
 				<label for="email">Email:</label>
-				<input type="email" name="email" id="email" value={possibleEmail} required />
+				<input
+					type="email"
+					name="email"
+					id="email"
+					value={possibleEmail}
+					required
+					on:keydown={saveEmailInput}
+				/>
 
 				<label for="name">Name:</label>
-				<input type="text" name="name" id="name" value={possibleName} required />
+				<input
+					type="text"
+					name="name"
+					id="name"
+					value={possibleName}
+					on:keydown={saveNameInput}
+					required
+				/>
 
 				<label for="name">Leave a comment (optional)</label>
 				<textarea id="comment" name="comment" />
