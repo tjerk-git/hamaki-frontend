@@ -38,8 +38,27 @@
 
 	onMount(() => {
 		// sensible default
+		let possibleEmail = '';
+		let possibleName = '';
+
 		let timezone = 'Europe/Amsterdam';
 		timezone = getTimeZone();
+
+		// check if there is localstorage for formData
+		if (browser) {
+			const formData = localStorage.getItem('formData');
+			if (formData) {
+				const parsedFormData = JSON.parse(formData);
+				if (parsedFormData.email) {
+					// set the email value
+					possibleEmail = parsedFormData.email;
+				}
+				if (parsedFormData.name) {
+					// set the name value
+					possibleName = parsedFormData.name;
+				}
+			}
+		}
 	});
 
 	const isObjectEmpty = (objectName) => {
@@ -79,25 +98,8 @@
 				</div>
 			{/if}
 
-			<a
-				class="outline"
-				href="{PUBLIC_BASE_URL}{form?.data.reservation?.icsURL}"
-				target="_blank"
-				style="text-decoration: none;"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					style="vertical-align: middle;"
-				>
-					<path
-						d="M17 3v-2c0-.552.447-1 1-1s1 .448 1 1v2c0 .552-.447 1-1 1s-1-.448-1-1zm-12 1c.553 0 1-.448 1-1v-2c0-.552-.447-1-1-1-.553 0-1 .448-1 1v2c0 .552.447 1 1 1zm13 13v-3h-1v4h3v-1h-2zm-5 .5c0 2.481 2.019 4.5 4.5 4.5s4.5-2.019 4.5-4.5-2.019-4.5-4.5-4.5-4.5 2.019-4.5 4.5zm11 0c0 3.59-2.91 6.5-6.5 6.5s-6.5-2.91-6.5-6.5 2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5zm-14.237 3.5h-7.763v-13h19v1.763c.727.33 1.399.757 2 1.268v-9.031h-3v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-9v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-3v21h11.031c-.511-.601-.938-1.273-1.268-2z"
-						fill="#FFFFFF"
-					/>
-				</svg>
-				<span style="vertical-align: middle; margin-left: 4px;">add to your own calendar</span>
+			<a href="{PUBLIC_BASE_URL}{form?.data.reservation?.icsURL}" target="_blank" class="outline">
+				<span style="vertical-align: middle; margin-left: 4px;">Add to your own calendar</span>
 			</a>
 
 			<span class="textInCenter">or.....</span>
@@ -169,10 +171,10 @@
 
 			<form method="POST" action="/reserve/{spotId}">
 				<label for="email">Email:</label>
-				<input type="email" name="email" id="email" required />
+				<input type="email" name="email" id="email" value={possibleEmail} required />
 
 				<label for="name">Name:</label>
-				<input type="text" name="name" id="name" required />
+				<input type="text" name="name" id="name" value={possibleName} required />
 
 				<label for="name">Leave a comment (optional)</label>
 				<textarea id="comment" name="comment" />

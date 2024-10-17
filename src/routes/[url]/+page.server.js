@@ -16,20 +16,7 @@ export async function load({ fetch, params }) {
             return data;
         }
 
-        // const data = await res.json().then((data) => {
-        //     // if (data.calendar && data.calendar.name) {
-        //     //     calendarName.set(data.calendar.name);
-        //     // } else {
-        //     //     calendarName.set(params.url);
-        //     // }
-
-        //     return { data };
-        // });
-
     } catch (error) {
         console.error('Error occurred during data retrieval:', error);
-        // throw error(500, {
-        //     message: 'Internal Server Error'
-        // });
     }
 }
