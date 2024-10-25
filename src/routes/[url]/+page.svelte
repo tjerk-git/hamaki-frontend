@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { calendarName, selectedWaitingListDay } from '$lib/stores/stores';
 	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
+	import { selectedSpot } from '$lib/stores/stores';
 
 	export let data;
 
@@ -33,6 +34,7 @@
 				<span class="callout">
 					{data.calendar.description}
 				</span>
+
 				<a id="forgot" href="/forgot/{data.calendar.url}">😅 Forgot my appointment</a>
 			</p>
 		{/if}
