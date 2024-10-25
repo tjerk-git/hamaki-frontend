@@ -32,7 +32,7 @@
 			confetti({
 				particleCount: 100,
 				spread: 70,
-				origin: { x: 100, y: 150 }
+				origin: { x: 787, y: 529 }
 			});
 		}
 	}
