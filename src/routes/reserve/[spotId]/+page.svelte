@@ -186,7 +186,7 @@
 					id="email"
 					value={possibleEmail}
 					required
-					on:keydown={saveEmailInput}
+					on:change={saveEmailInput}
 				/>
 
 				<label for="name">Name:</label>
@@ -195,7 +195,7 @@
 					name="name"
 					id="name"
 					value={possibleName}
-					on:keydown={saveNameInput}
+					on:change={saveNameInput}
 					required
 				/>
 
