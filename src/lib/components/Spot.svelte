@@ -57,7 +57,8 @@
 
 <a href={getUrl(spot)} on:click={saveSpot(spot)} class:reserved={isReserved(spot)}>
 	{#if isReserved(spot)}
-
+	{#if spot.visitorEmail} <span class="visitor">Email: {spot.visitorEmail}</span>{/if}
+	{#if spot.visitorName} <span class="visitor">Name: {spot.visitorName}</span>{/if}
 		
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			><path
@@ -78,8 +79,7 @@
 
 	{#if spot.location} <span class="location">{spot.location}</span>{/if}
 
-	{#if spot.visitorEmail} <span class="visitor">Email: {spot.visitorEmail}</span>{/if}
-	{#if spot.visitorName} <span class="visitor">Name: {spot.visitorName}</span>{/if}
+
 
 	{#if !isReserved(spot)}
 		<span class="take-spot">
