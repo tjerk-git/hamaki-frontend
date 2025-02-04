@@ -57,6 +57,8 @@
 
 <a href={getUrl(spot)} on:click={saveSpot(spot)} class:reserved={isReserved(spot)}>
 	{#if isReserved(spot)}
+
+		
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			><path
 				d="M14 9v2h-4v-2c0-1.104.897-2 2-2s2 .896 2 2zm10 3c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12zm-8-1h-1v-2c0-1.656-1.343-3-3-3s-3 1.344-3 3v2h-1v6h8v-6z"
@@ -75,6 +77,9 @@
 	<time>{getCorrectDate(spot.endDate, dateOptions)}</time>
 
 	{#if spot.location} <span class="location">{spot.location}</span>{/if}
+
+	{#if spot.visitorEmail} <span class="visitor">Email: {spot.visitorEmail}</span>{/if}
+	{#if spot.visitorName} <span class="visitor">Name: {spot.visitorName}</span>{/if}
 
 	{#if !isReserved(spot)}
 		<span class="take-spot">
@@ -123,6 +128,12 @@
 	.location {
 		color: grey;
 		font-size: 1rem;
+	}
+
+	.visitor {
+		color: grey;
+		font-size: 1rem;
+		margin-left: 1rem;
 	}
 
 	time:last-of-type {
