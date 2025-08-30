@@ -3,7 +3,6 @@
 
 <nav>
 	<ul>
-		<li><a href="/about">What is Hamaki?</a></li>
 	</ul>
 </nav>
 

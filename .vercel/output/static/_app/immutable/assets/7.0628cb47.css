@@ -1,0 +1,58 @@
+.popup.svelte-ikjf9n {
+	background-color: #fff;
+	max-width: 500px;
+	margin: 0 auto;
+	text-align: center;
+	color: #363636;
+	line-height: 1.3;
+	will-change: transform;
+	box-shadow: 0 3px 10px #0000001a, 0 3px 3px #0000000d;
+	pointer-events: auto;
+	padding: 8px 10px;
+	border-radius: 8px;
+}
+.button_container.svelte-ikjf9n {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1rem;
+}
+.outline.svelte-ikjf9n {
+	border: 2px solid var(--theme-accent);
+	color: var(--theme-accent);
+	background-color: transparent;
+	padding: 8px 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	margin-right: 10px;
+}
+.outline.svelte-ikjf9n:hover {
+	background-color: var(--theme-accent);
+	color: #fff;
+}
+.outline.svelte-1mikdta.svelte-1mikdta {
+	border: 2px solid var(--theme-accent);
+	color: var(--theme-accent);
+	background-color: transparent;
+	padding: 8px 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	margin-right: 10px;
+}
+.outline.svelte-1mikdta.svelte-1mikdta:hover {
+	background-color: var(--theme-accent);
+	color: #fff;
+}
+.card.svelte-1mikdta.svelte-1mikdta {
+	background-color: #f9f9f9;
+	padding: 20px;
+	border-radius: 10px;
+	margin-top: 20px;
+	color: #000;
+}
+.card.svelte-1mikdta h2.svelte-1mikdta {
+	color: #000;
+	margin-bottom: 5px;
+}

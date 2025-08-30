@@ -1,0 +1,61 @@
+textarea.svelte-1u1rkle {
+	background: rgba(0, 0, 0, 30%);
+	color: #fff;
+	border: 1px solid -var(--theme-accent);
+	border-radius: 5px;
+	outline: none;
+	padding: 1.2rem;
+	font-size: 1.2rem;
+	width: 100%;
+	margin-bottom: 20px;
+	font-family: Inter;
+}
+.reserve_container.svelte-1u1rkle {
+	margin-bottom: 20px;
+	padding: 20px;
+}
+label.svelte-1u1rkle {
+	margin-bottom: 10px;
+}
+input[type='email'].svelte-1u1rkle,
+input[type='text'].svelte-1u1rkle {
+	background: rgba(0, 0, 0, 30%);
+	color: #fff;
+	border: 1px solid var(--theme-accent);
+	border-radius: 5px;
+	outline: none;
+	padding: 1.2rem;
+	font-size: 1.2rem;
+	width: 100%;
+	margin-bottom: 20px;
+}
+label.svelte-1u1rkle {
+	display: block;
+}
+button.svelte-1u1rkle {
+	background: white;
+	color: var(--theme-accent);
+	text-decoration: none;
+	text-align: left;
+	border: none;
+	cursor: pointer;
+	padding: 1rem;
+	border-radius: 10px;
+	outline: none;
+	font-size: 1rem;
+	line-height: 1.25;
+	text-align: center;
+	width: 100%;
+}
+.box.svelte-1u1rkle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	height: 10rem;
+	width: 100%;
+	border-radius: 0.5rem;
+	user-select: none;
+	color: #000;
+	background: white;
+}
