@@ -37,6 +37,6 @@
 		"svelte-french-toast": "^1.0.4-beta.0"
 	},
 	"engines": {
-		"node": "18.x"
+		"node": ">=22.0.0"
 	}
 }
