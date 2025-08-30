@@ -35,5 +35,8 @@
 		"dayjs": "^1.11.7",
 		"get-user-locale": "^2.2.1",
 		"svelte-french-toast": "^1.0.4-beta.0"
+	},
+	"engines": {
+		"node": "18.x"
 	}
 }
